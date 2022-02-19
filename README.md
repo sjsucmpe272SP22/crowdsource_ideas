@@ -3,3 +3,5 @@ Group Members:
 - Kumar Raja Pavuluri
 - Anirudh Satyam
 - Roger Kuo
+
+[Project Ideas](project_ideas.txt)
