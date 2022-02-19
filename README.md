@@ -4,4 +4,4 @@ Group Members:
 - Anirudh Satyam
 - Roger Kuo
 
-[Project Ideas](project_ideas.txt)
+[Link to Project Ideas text file](project_ideas.txt)
