@@ -50,6 +50,29 @@ N/A
 
 ## 2 - 
 
+Title:
+Inventory management
+
+Introduction:
+Inventory tracking application for recording resource utilization
+
+Abstract:
+Many organizations fail to track their inventories. Sometimes, there would be large stock of products not sold and in other scenarios, there is shortage of items
+So, this application keeps track of resources and manage inventory
+
+Approach: 
+In this project, we apply Data Modeling with Cassandra and build an ETL pipeline using Python. We will develop a model by creating tables in apache cassandra around our queries that we want to get answers for. For our use case,we might want below information:
+
+1)Get details of different products sold during particular season and in particular areas
+2)Analysing performance of different stores in a particular region
+3)Evaluating customer information required to maintain the retention
+
+Persona:
+This will be helpful to the organizations who are facing difficulties in tracking their resources and optimizing the costs involved in it.
+
+Dataset links:
+N/A
+
 ## 3 - 
 
 1. Title
