@@ -51,3 +51,19 @@ N/A
 ## 2 - 
 
 ## 3 - 
+
+1. Title
+
+Auditable Electronic Voting
+
+2. Abstract
+
+Voting has been made more accessible due to the introduction of electronic voting systems. 
+Political elections have been utilizing electronic voting systems for several years. 
+However, unlike with physical ballots, the Voting results from electronic voting systems are difficult to verify and often need to be audited. 
+This problem was notably highlighted during the 2020 USA presidential elections.
+
+3. Approach
+
+Design a generic voting system that can produce different types of receipts (paper, audio, etc) that both the voters and auditors can easily verify.
+The voting system should also check for invalid votes. This could include duplicates, deceased people, and ineligible voters.
