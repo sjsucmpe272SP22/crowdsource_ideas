@@ -12,15 +12,23 @@ https://ranjanr.blogspot.com/
 ---
 # Project Idea
 
-Title:
+## Title:
 
-Abstract:
+## Abstract:
 
-Approach:
+## Approach:
 
-Personas:
+web app 
 
-Resources:
+stack
+node js backend
+react front
+mongo/sql db
+state mngmt redux
+
+## Personas:
+
+## Resources:
 
 ---
 # Architecture
