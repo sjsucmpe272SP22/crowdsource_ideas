@@ -18,13 +18,12 @@ https://ranjanr.blogspot.com/
 
 ## Approach:
 
-web app 
+For this project, we will be developing a web application to host an interactive, online community for crowdsourcing ideas. 
 
-stack
-node js backend
-react front
-mongo/sql db
-state mngmt redux
+The web application will be built on a full MERN stack. 
+- The data will be stored in MongoDB. 
+- The data will be transfered through the application via Express/Node backend channels. 
+- Users will interact with a UI built with a React/Node front end.
 
 ## Personas:
 
