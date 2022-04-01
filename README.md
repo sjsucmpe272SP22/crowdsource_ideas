@@ -44,4 +44,6 @@ The web application will be built on a full MERN stack.
 
 5) break down into user stories and git issues to implement
 
+- [User Stories](https://docs.google.com/document/d/1psgOoa0rQzueQ4U-ghOZa9sOsmnGalPGoc304E1liZU/edit?usp=sharing)
+
 ---
