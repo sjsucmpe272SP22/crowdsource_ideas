@@ -45,7 +45,7 @@ The web application will be built on a full MERN stack.
 5) break down into user stories and git issues to implement
   - [User Stories](https://docs.google.com/document/d/1psgOoa0rQzueQ4U-ghOZa9sOsmnGalPGoc304E1liZU/edit?usp=sharing)
     - (WIP, to be updated as the project progresses)
-  - View git issues in the Issues tab, or see them on a kanban board in the Projects tab
+  - View git issues in [Issues](https://github.com/sjsucmpe272SP22/crowdsource_ideas/issues) or [Projects](https://github.com/sjsucmpe272SP22/crowdsource_ideas/projects/1)
     - (WIP, to be updated as the project progresses)
 
 ---
