@@ -43,8 +43,9 @@ The web application will be built on a full MERN stack.
 4) Prioritize the work and create hills/sub-hills that capture the theme of the problem you are going to solve.
 
 5) break down into user stories and git issues to implement
-
-- [User Stories](https://docs.google.com/document/d/1psgOoa0rQzueQ4U-ghOZa9sOsmnGalPGoc304E1liZU/edit?usp=sharing)
-- View git issues in the Issues tab, or see them on a kanban board in the Projects tab
+  - [User Stories](https://docs.google.com/document/d/1psgOoa0rQzueQ4U-ghOZa9sOsmnGalPGoc304E1liZU/edit?usp=sharing)
+    - (WIP, to be updated as the project progresses)
+  - View git issues in the Issues tab, or see them on a kanban board in the Projects tab
+    - (WIP, to be updated as the project progresses)
 
 ---
