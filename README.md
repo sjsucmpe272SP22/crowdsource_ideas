@@ -31,7 +31,7 @@ The web application will be built on a full MERN stack.
 
 ---
 # Architecture
-![Architecture Diagram](https://www.bezkoder.com/wp-content/uploads/2020/03/react-node-express-mongodb-mern-stack-example-architecture.png)
+![Architecture Diagram](https://github.com/sjsucmpe272SP22/crowdsource_ideas/blob/master/images/architecture_diagram.png)
 ---
 # Design
 
