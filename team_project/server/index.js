@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8000;
 const cors = require("cors");
 const frontendURL = "http://localhost:3000";
 
