@@ -25,6 +25,17 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+
+    <!-- Navigation Bar -->
+    <link rel="stylesheet" href="./css/navbar.css" type="text/css">
+    <ul id='navbar'>
+      <li><a class="active" href="/home">Ideas</a></li>
+      <li><a href="#guide">Guide</a></li>
+      <li><a href="#soon">Coming Soon</a></li>
+      <li><a href="#announces">Annoucements</a></li>
+      <li style='float:right'><a href="/profile">Profile</a></li>
+    </ul>
+
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -38,6 +49,10 @@
 
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    -->    
+
+    <!-- navbar script for active class highlight -->
+    <script src="./js/navbar.js" defer></script> 
+
   </body>
 </html>
