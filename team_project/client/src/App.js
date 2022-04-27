@@ -3,13 +3,25 @@ import "./App.css";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 // import SignIn from "./SignIn";
 // import SignUp from "./SignUp";
+import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
+// import Profile from "./components/Profile/Profile";
+
+const sections = [
+  { title: 'Ideas', url: '/home' },
+  { title: 'Guide', url: '#' },
+  { title: 'Coming Soon', url: '#' },
+  { title: 'Users', url: '#' },
+  { title: 'Research', url: '#' },
+  { title: 'Profile', url: '/profile' },
+];
 
 function App() {
   return (
     <div className="App">
+      <Navbar title="Crowdsource Ideas" sections={sections} />
       <Router>
         <Routes>
           <Route path="/home" element={<Home />} />
@@ -20,6 +32,9 @@ function App() {
         <Routes>
           <Route path="signup" element={<SignUp />} />
         </Routes>
+        {/* <Routes>
+          <Route path="profile" element={<Profile />} />
+        </Routes> */}
       </Router>
     </div>
   );
