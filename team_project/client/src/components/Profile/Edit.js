@@ -5,8 +5,8 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Container from "@mui/material/Container";
+import TextField from "@mui/material/TextField";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme();
@@ -40,7 +40,7 @@ function stringAvatar(name) {
   };
 }
 
-function Profile() {
+function Edit() {
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="xs" sx={{ p: 2 }}>
@@ -50,43 +50,32 @@ function Profile() {
               <Avatar {...stringAvatar('Siddhant Parmar')} />
             </Stack>
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Siddhant Parmar
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                email@address.com
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                anything else
-              </Typography>
+            <TextField 
+              required
+              id="name" 
+              label="Name" 
+              variant="filled"
+              defaultValue="Siddhant Parmar"
+            />
+            <TextField 
+              required
+              id="email"
+              label="Email" 
+              variant="filled"
+              defaultValue="email@address.com" 
+            />
+            <TextField 
+              id="something" 
+              label="Something" 
+              variant="filled"
+              defaultValue="anything else" 
+            />
             </CardContent>
             <Stack direction="row" justifyContent="center">
               <CardActions>
-                <Button size="small" href='/edit'>Edit</Button>
+                <Button size="small" href='/profile'>Save</Button>
               </CardActions>
             </Stack>
-          </Card>
-        </Stack>
-        <Stack direction="row" justifyContent="center">
-          <Card sx={{ m: 2 }} variant="outlined">
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                Ideas
-              </Typography>
-              <Typography variant="body2">
-                10
-              </Typography>
-            </CardContent>
-          </Card>
-          <Card sx={{ m: 2 }} variant="outlined">
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                Votes
-              </Typography>
-              <Typography variant="body2">
-                6
-              </Typography>
-            </CardContent>
           </Card>
         </Stack>
       </Container>
@@ -94,4 +83,4 @@ function Profile() {
   );
 };
 
-export default Profile;
+export default Edit;

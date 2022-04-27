@@ -7,7 +7,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
-// import Profile from "./components/Profile/Profile";
+import Profile from "./components/Profile/Profile";
+import Edit from "./components/Profile/Edit";
 
 const sections = [
   { title: 'Ideas', url: '/home' },
@@ -21,7 +22,7 @@ const sections = [
 function App() {
   return (
     <div className="App">
-      <Navbar title="Crowdsource Ideas" sections={sections} />
+      <Navbar sections={sections} />
       <Router>
         <Routes>
           <Route path="/home" element={<Home />} />
@@ -32,9 +33,12 @@ function App() {
         <Routes>
           <Route path="signup" element={<SignUp />} />
         </Routes>
-        {/* <Routes>
+        <Routes>
           <Route path="profile" element={<Profile />} />
-        </Routes> */}
+        </Routes>
+        <Routes>
+          <Route path="edit" element={<Edit />} />
+        </Routes>
       </Router>
     </div>
   );
