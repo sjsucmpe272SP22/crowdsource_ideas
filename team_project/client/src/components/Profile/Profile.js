@@ -9,46 +9,18 @@ import Typography from '@mui/material/Typography';
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import profile from "./profile.json";
+import sid from "./sid.jpg"
 
 const theme = createTheme();
-
-function stringToColor(string) {
-  let hash = 0;
-  let i;
-
-  /* eslint-disable no-bitwise */
-  for (i = 0; i < string.length; i += 1) {
-    hash = string.charCodeAt(i) + ((hash << 5) - hash);
-  }
-
-  let color = '#';
-
-  for (i = 0; i < 3; i += 1) {
-    const value = (hash >> (i * 8)) & 0xff;
-    color += `00${value.toString(16)}`.slice(-2);
-  }
-  /* eslint-enable no-bitwise */
-
-  return color;
-}
-
-function stringAvatar(name) {
-  return {
-    sx: {
-      bgcolor: stringToColor(name),
-    },
-    children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
-  };
-}
 
 function Profile() {
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="xs" sx={{ p: 2 }}>
         <Stack direction="row" justifyContent="center">
-          <Card sx={{ maxWidth: 345, p: 2 }} variant="outlined">
+          <Card sx={{ maxWidth: 1000, p: 2 }} variant="outlined">
             <Stack direction="row" justifyContent="center">
-              <Avatar {...stringAvatar('Siddhant Parmar')} />
+              <Avatar alt={profile.name} src={sid} />
             </Stack>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
@@ -63,7 +35,9 @@ function Profile() {
             </CardContent>
             <Stack direction="row" justifyContent="center">
               <CardActions>
-                <Button size="small" href='/edit' variant="contained">Edit</Button>
+                <Button size="small" variant="contained" href="/edit">
+                  Edit
+                </Button>
               </CardActions>
             </Stack>
           </Card>
