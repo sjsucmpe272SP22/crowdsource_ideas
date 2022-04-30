@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { Navbar } from "react-bootstrap";
 import AddIdeaForm from "./AddIdeaForm";
+import OpenIdeaForm from "./OpenIdeaForm";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { useState } from "react";
@@ -27,10 +28,21 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Home = () => {
   const [ideas, setIdeas] = useState([]);
+  const [ideasInformation, setIdeasInformation] = useState([]);
   const [open, setOpen] = useState(false);
+  const [openIdea, setOpenIdea] = useState(false);
+  const [index, setIndex] = useState(-1);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const handleClickIdea = () => {
+    console.log("idea clicked");
+  }
+  const handleOpenIdea = (id) => {
+    setOpenIdea(true);
+    console.log("success", id);
+    setIndex(id)
+  }
+  const handleCloseIdea = () => setOpenIdea(false);
   const style = {
     position: "absolute",
     top: "30%",
@@ -47,8 +59,18 @@ const Home = () => {
     axios.get(API + "/dashboard/getIdeas").then((response) => {
       setIdeas(response.data.ideas);
     });
-    console.log(ideas);
+    console.log("IDEALIST", ideas);
   }, []);
+
+  React.useEffect(() => {
+    axios.get(API + "/dashboard/getIdeasInformation").then((response) => {
+      setIdeasInformation(response.data.ideasInformation);
+    });
+    console.log("IDEAINFOLIST", ideasInformation);
+  }, []);
+
+
+
 
   return (
     <>
@@ -74,6 +96,18 @@ const Home = () => {
                 <h3>Create Idea</h3>
                 <br />
                 <AddIdeaForm />
+              </Box>
+            </Modal>
+            <Modal
+              open={openIdea}
+              onClose={handleCloseIdea}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <h3>Idea Information</h3>
+                <br />
+                <OpenIdeaForm infoIdea = {ideasInformation} ideaIndex = {index} />
               </Box>
             </Modal>
           </Navbar>
@@ -109,8 +143,8 @@ const Home = () => {
               <strong>New Ideas</strong>
             </p>
             {ideas.map((item, i) => (
-              <li style={{ fontSize: "12px" }}>
-                PROD-I-{i} <a href="url">{item.name}</a>
+              <li style={{ fontSize: "12px" }} onClick={() => handleOpenIdea(i)}>
+                PROD-I-{i} <a>{item.name}</a>
               </li>
             ))}
           </Item>
