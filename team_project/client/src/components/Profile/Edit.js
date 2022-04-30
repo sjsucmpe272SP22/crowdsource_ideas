@@ -7,9 +7,14 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import profile from "./profile.json";
 
 const theme = createTheme();
+// const fs = require('fs');
+// const fileName = "./profile.json";
 
 function stringToColor(string) {
   let hash = 0;
@@ -41,41 +46,73 @@ function stringAvatar(name) {
 }
 
 function Edit() {
+  const navigate = useNavigate();
+  const updateProfile = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      name: data.get("name"),
+      email: data.get("email"),
+      position: data.get("position"),
+    });
+
+    // need permanent solution
+    profile.name = data.get("name");
+    profile.email = data.get("email");
+    profile.position = data.get("position");
+
+    //
+    // fs.writeFile(fileName, JSON.stringify(profile, null, 2), function writeJSON(err) {
+    //   if (err) return console.log(err);
+    //   console.log(JSON.stringify(profile));
+    //   console.log("Profile Updated: " + fileName);
+    // });
+
+    navigate("/profile");
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="xs" sx={{ p: 2 }}>
         <Stack direction="row" justifyContent="center">
           <Card sx={{ maxWidth: 345, p: 2 }} variant="outlined">
-            <Stack direction="row" justifyContent="center">
-              <Avatar {...stringAvatar('Siddhant Parmar')} />
-            </Stack>
             <CardContent>
-            <TextField 
-              required
-              id="name" 
-              label="Name" 
-              variant="filled"
-              defaultValue="Siddhant Parmar"
-            />
-            <TextField 
-              required
-              id="email"
-              label="Email" 
-              variant="filled"
-              defaultValue="email@address.com" 
-            />
-            <TextField 
-              id="something" 
-              label="Something" 
-              variant="filled"
-              defaultValue="anything else" 
-            />
+              <Stack direction="row" justifyContent="center">
+                <Avatar {...stringAvatar('Siddhant Parmar')} />
+              </Stack>
+              <Box
+                component="form"
+                onSubmit={updateProfile}
+                noValidate
+              >
+                <TextField 
+                  required
+                  id="name" 
+                  name="name"
+                  label="Name" 
+                  variant="filled"
+                  defaultValue={profile.name}
+                />
+                <TextField 
+                  required
+                  id="email"
+                  name="email"
+                  label="Email" 
+                  variant="filled"
+                  defaultValue={profile.email}
+                />
+                <TextField 
+                  id="position" 
+                  name="position"
+                  label="Position" 
+                  variant="filled"
+                  defaultValue={profile.position} 
+                />
+                <Button type="submit" size="small" variant="contained">
+                  Save
+                </Button>
+              </Box>
             </CardContent>
-            <Stack direction="row" justifyContent="center">
-              <CardActions>
-                <Button size="small" href='/profile'>Save</Button>
-              </CardActions>
-            </Stack>
           </Card>
         </Stack>
       </Container>

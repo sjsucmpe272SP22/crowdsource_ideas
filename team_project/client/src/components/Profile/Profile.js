@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import profile from "./profile.json";
 
 const theme = createTheme();
 
@@ -51,18 +52,18 @@ function Profile() {
             </Stack>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                Siddhant Parmar
+                {profile.name}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                email@address.com
+                {profile.email}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                anything else
+                {profile.position}
               </Typography>
             </CardContent>
             <Stack direction="row" justifyContent="center">
               <CardActions>
-                <Button size="small" href='/edit'>Edit</Button>
+                <Button size="small" href='/edit' variant="contained">Edit</Button>
               </CardActions>
             </Stack>
           </Card>
@@ -74,7 +75,7 @@ function Profile() {
                 Ideas
               </Typography>
               <Typography variant="body2">
-                10
+                {profile.ideas}
               </Typography>
             </CardContent>
           </Card>
@@ -84,7 +85,7 @@ function Profile() {
                 Votes
               </Typography>
               <Typography variant="body2">
-                6
+                {profile.votes}
               </Typography>
             </CardContent>
           </Card>
