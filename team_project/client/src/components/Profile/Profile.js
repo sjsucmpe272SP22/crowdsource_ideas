@@ -2,14 +2,18 @@ import * as React from "react";
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import profile from "./profile.json";
+import { TextField } from "@mui/material";
+
+// dummy account; no db of accounts
+import profile from "./../SignIn/login_credentials.json";
 
 const theme = createTheme();
 
@@ -25,30 +29,84 @@ function Profile() {
       <Container maxWidth="xs" sx={{ p: 2 }}>
         <Stack direction="row" justifyContent="center">
           <Card sx={{ maxWidth: 1000, p: 2 }} variant="outlined">
-            <Stack direction="row" justifyContent="center">
-              <Avatar alt={profile.name} src={profile.image} />
-            </Stack>
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {profile.name}
+              <Typography component="h1" variant="h5" sx={{ mb: 2,}}>
+                Profile
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {profile.email}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {profile.position}
-              </Typography>
-            </CardContent>
-            <Stack direction="row" justifyContent="center">
-              <CardActions>
-                <Button size="small" variant="contained" onClick={editProfile}>
+              <Stack direction="row" justifyContent="center">
+                <Avatar alt={profile.fname} src={profile.image} />
+              </Stack>
+              <Box
+                sx={{ 
+                  mt: 3,
+                  alignItems: "center", 
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={6}>
+                    <TextField 
+                      fullWidth
+                      id="fname" 
+                      name="fname"
+                      label="First Name" 
+                      variant="filled"
+                      defaultValue={profile.fname}
+                      InputProps={{
+                        readOnly: true,
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                  <TextField 
+                      fullWidth
+                      id="fname" 
+                      name="fname"
+                      label="First Name" 
+                      variant="filled"
+                      defaultValue={profile.lname}
+                      InputProps={{
+                        readOnly: true,
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                  <TextField 
+                      fullWidth
+                      id="email"
+                      name="email"
+                      label="Email" 
+                      variant="filled"
+                      defaultValue={profile.email}
+                      InputProps={{
+                        readOnly: true,
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                  <TextField 
+                      fullWidth
+                      id="position" 
+                      name="position"
+                      label="Position" 
+                      variant="filled"
+                      defaultValue={profile.position} 
+                      InputProps={{
+                        readOnly: true,
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+                <Button size="small" variant="contained" sx={{ mt: 3}} onClick={editProfile}>
                   Edit
                 </Button>
-              </CardActions>
-            </Stack>
+              </Box>
+            </CardContent>
           </Card>
         </Stack>
-        <Stack direction="row" justifyContent="center">
+        {/* Add additional profile stuff here? */}
+        {/* <Stack direction="row" justifyContent="center">
           <Card sx={{ m: 2 }} variant="outlined">
             <CardContent>
               <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -69,7 +127,7 @@ function Profile() {
               </Typography>
             </CardContent>
           </Card>
-        </Stack>
+        </Stack> */}
       </Container>
     </ThemeProvider>
   );
