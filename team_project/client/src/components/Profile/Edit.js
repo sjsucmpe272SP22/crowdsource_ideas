@@ -6,10 +6,13 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import profile from "./profile.json";
+// import profile from "./profile.json";
+import profile from "./../SignIn/login_credentials.json";
 
 const theme = createTheme();
 
@@ -20,14 +23,16 @@ function Edit() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      name: data.get("name"),
+      fname: data.get("fname"),
+      lname: data.get("lname"),
       email: data.get("email"),
       position: data.get("position"),
     });
 
     // TODO
     // need permanent solution
-    profile.name = data.get("name");
+    profile.fname = data.get("fname");
+    profile.lname = data.get("lname");
     profile.email = data.get("email");
     profile.position = data.get("position");
 
@@ -66,6 +71,9 @@ function Edit() {
         <Stack direction="row" justifyContent="center">
           <Card sx={{ maxWidth: 1000, p: 2 }} variant="outlined">
             <CardContent>
+              <Typography component="h1" variant="h5"sx={{ mb: 2,}}>
+                Edit Profile
+              </Typography>
               <Stack direction="row" justifyContent="center">
                 <Button
                   component="label"
@@ -83,37 +91,54 @@ function Edit() {
                 onSubmit={updateProfile}
                 noValidate
                 sx={{ 
-                  p: 1,
+                  mt: 3,
                   alignItems: "center", 
                   display: "flex",
                   flexDirection: "column",
                 }}
               >
-                <TextField 
-                  required
-                  id="name" 
-                  name="name"
-                  label="Name" 
-                  variant="filled"
-                  defaultValue={profile.name}
-                />
-                <TextField 
-                  required
-                  id="email"
-                  name="email"
-                  label="Email" 
-                  variant="filled"
-                  defaultValue={profile.email}
-                />
-                <TextField 
-                  id="position" 
-                  name="position"
-                  label="Position" 
-                  variant="filled"
-                  defaultValue={profile.position} 
-                />
-                <br></br>
-                <Button type="submit" size="small" variant="contained">
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={6}>
+                    <TextField 
+                      required
+                      fullWidth
+                      id="fname" 
+                      name="fname"
+                      label="First Name" 
+                      defaultValue={profile.fname}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField 
+                      required
+                      fullWidth
+                      id="lname" 
+                      name="lname"
+                      label="Last Name" 
+                      defaultValue={profile.lname}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField 
+                      required
+                      fullWidth
+                      id="email"
+                      name="email"
+                      label="Email" 
+                      defaultValue={profile.email}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField 
+                      fullWidth
+                      id="position" 
+                      name="position"
+                      label="Position" 
+                      defaultValue={profile.position} 
+                    />
+                  </Grid>
+                </Grid>
+                <Button type="submit" size="small" variant="contained" sx={{ mt: 3}}>
                   Save
                 </Button>
               </Box>

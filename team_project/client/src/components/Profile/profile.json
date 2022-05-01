@@ -1,9 +1,10 @@
 {
-  "name": "Siddhant Parmar",
+  "fname": "Siddhant",
+  "lname": "Parmar",
   "email": "group10@sjsu.edu",
-  "position": "Techno-king",
-  "ideas": "10",
-  "votes": "5",
   "password": "group272",
-  "image": "./sid.jpg"
+  "position": "Techno-king",
+  "image": "./sid.jpg",
+  "ideas": "10",
+  "votes": "5"
 }
