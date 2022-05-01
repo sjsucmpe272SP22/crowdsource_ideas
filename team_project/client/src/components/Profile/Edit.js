@@ -11,7 +11,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-// import profile from "./profile.json";
+
+// dummy account; no db of accounts
 import profile from "./../SignIn/login_credentials.json";
 
 const theme = createTheme();
@@ -78,7 +79,7 @@ function Edit() {
                 <Button
                   component="label"
                 >
-                  <Avatar id='prof_pic' alt={profile.name} src={profile.image}/>
+                  <Avatar id='prof_pic' alt={profile.fname} src={profile.image}/>
                   <input
                     type="file"
                     hidden

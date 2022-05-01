@@ -11,7 +11,8 @@ import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { TextField } from "@mui/material";
-// import profile from "./profile.json";
+
+// dummy account; no db of accounts
 import profile from "./../SignIn/login_credentials.json";
 
 const theme = createTheme();
@@ -33,7 +34,7 @@ function Profile() {
                 Profile
               </Typography>
               <Stack direction="row" justifyContent="center">
-                <Avatar alt={profile.name} src={profile.image} />
+                <Avatar alt={profile.fname} src={profile.image} />
               </Stack>
               <Box
                 sx={{ 
