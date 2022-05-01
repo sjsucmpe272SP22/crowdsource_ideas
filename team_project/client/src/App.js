@@ -9,6 +9,9 @@ import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
 import Profile from "./components/Profile/Profile";
 import Edit from "./components/Profile/Edit";
+import HeaderOne from "./components/SignInSide";
+import SignInSide from "./components/SignInSide";
+import Welcome from "./components/Welcome";
 
 const sections = [
   { title: 'Ideas', url: '/home' },
@@ -23,7 +26,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar sections={sections} />
+        {/* <Navbar sections={sections} /> */}
         <Routes>
           <Route path="/home" element={<Home />} />
         </Routes>
@@ -38,6 +41,12 @@ function App() {
         </Routes>
         <Routes>
           <Route path="edit" element={<Edit />} />
+        </Routes>
+        <Routes>
+          <Route path="welcome1" element={<SignInSide />} />
+        </Routes>
+        <Routes>
+          <Route path="welcome" element={<Welcome />} />
         </Routes>
       </Router>
     </div>
