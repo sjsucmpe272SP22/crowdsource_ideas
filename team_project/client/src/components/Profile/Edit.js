@@ -26,11 +26,13 @@ function Edit() {
       position: data.get("position"),
     });
 
+    // TODO
     // need permanent solution
     profile.name = data.get("name");
     profile.email = data.get("email");
     profile.position = data.get("position");
 
+    // TODO
     // make call to backend/db to properly overwrite
 
     console.log(profile)
@@ -53,6 +55,7 @@ function Edit() {
       image.appendChild(child);
     }
 
+    // TODO
     // find way to actually save image to db
     profile.image = image.firstElementChild.src;
     console.log(profile);

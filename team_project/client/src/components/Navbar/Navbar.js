@@ -7,26 +7,54 @@ import Link from '@mui/material/Link';
 import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+import './Navbar.css';
+
 const theme = createTheme();
-
-
 
 function Navbar(props) {
   const { sections } = props;
 
   const navigate = useNavigate();
+
   const signIn = (event) => {
     event.preventDefault();
-    var siButton = document.getElementById("signIn");
-    siButton.style.display = "none"
-    navigate("/signin");
+
+    // TODO
+    // need to update this to check if user is logged in
+    if (window.location.href.indexOf("signin") == -1) {
+
+      event.currentTarget.style.display = "none";
+      var soButton = document.getElementById("signOut");
+      soButton.style.display = "block";
+
+      navigate("/signin");
+    }
+   
   };
+
   const signOut = (event) => {
     event.preventDefault();
-    var soButton = document.getElementById("signOut");
-    soButton.style.display = "none"
+    event.currentTarget.style.display = "none";
+
+    var siButton = document.getElementById("signIn");
+    siButton.style.display = "block";
+
     navigate("/signin");
   };
+
+  const changePage = (event) => {
+    event.preventDefault();
+    console.log(event.currentTarget.id);
+
+    // TODO
+    if (event.currentTarget.id == "/profile"){
+      // if logged in, goto profile page
+
+      // else goto login page
+    }
+
+    navigate(event.currentTarget.id);
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -45,9 +73,9 @@ function Navbar(props) {
               &nbsp;&nbsp;&nbsp; Crowdsource Ideas
             </h2>
           </Typography>
-          {/* <Button id="signIn" variant="contained" size="small" onClick={signIn}>
+          <Button id="signIn" variant="contained" size="small" onClick={signIn}>
             Sign In
-          </Button> */}
+          </Button>
           <Button id="signOut" variant="contained" size="small" onClick={signOut}>
             Sign Out
           </Button>
@@ -59,11 +87,13 @@ function Navbar(props) {
         >
           {sections.map((section) => (
             <Link
+              id={section.url}
               color="inherit"
               noWrap
               key={section.title}
               variant="body2"
-              href={section.url}
+              // href={section.url}
+              onClick={changePage}
               sx={{ p: 1, flexShrink: 0 }}
             >
               {section.title}
