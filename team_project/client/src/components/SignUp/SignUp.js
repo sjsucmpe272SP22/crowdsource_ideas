@@ -11,7 +11,11 @@ import Box from "@mui/material/Box";
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+// dummy account; no db of accounts
+import profile from "./../SignIn/login_credentials.json";
 
 function Copyright(props) {
   return (
@@ -34,13 +38,25 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
+      fname: data.get("firstName"),
+      lname: data.get("lastName"),
       email: data.get("email"),
       password: data.get("password"),
     });
+
+    // TODO
+    // save to db instead of overwrite dummy account
+    profile.fname = data.get("firstName");
+    profile.lname = data.get("lastName");
+    profile.email = data.get("email");
+    profile.password = data.get("password");
+
+    navigate("/signin");
   };
 
   return (
