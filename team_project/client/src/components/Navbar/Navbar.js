@@ -4,12 +4,29 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme();
 
+
+
 function Navbar(props) {
   const { sections } = props;
+
+  const navigate = useNavigate();
+  const signIn = (event) => {
+    event.preventDefault();
+    var siButton = document.getElementById("signIn");
+    siButton.style.display = "none"
+    navigate("/signin");
+  };
+  const signOut = (event) => {
+    event.preventDefault();
+    var soButton = document.getElementById("signOut");
+    soButton.style.display = "none"
+    navigate("/signin");
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -28,10 +45,10 @@ function Navbar(props) {
               &nbsp;&nbsp;&nbsp; Crowdsource Ideas
             </h2>
           </Typography>
-          {/* <Button variant="contained" size="small" href='/signin'>
+          {/* <Button id="signIn" variant="contained" size="small" onClick={signIn}>
             Sign In
           </Button> */}
-          <Button variant="contained" size="small" href='/signin'>
+          <Button id="signOut" variant="contained" size="small" onClick={signOut}>
             Sign Out
           </Button>
         </Toolbar>

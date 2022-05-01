@@ -22,8 +22,8 @@ const sections = [
 function App() {
   return (
     <div className="App">
-      <Navbar sections={sections} />
       <Router>
+        <Navbar sections={sections} />
         <Routes>
           <Route path="/home" element={<Home />} />
         </Routes>
