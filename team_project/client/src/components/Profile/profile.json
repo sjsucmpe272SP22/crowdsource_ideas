@@ -3,5 +3,7 @@
   "email": "group10@sjsu.edu",
   "position": "Techno-king",
   "ideas": "10",
-  "votes": "5"
+  "votes": "5",
+  "password": "group272",
+  "image": "./sid.jpg"
 }

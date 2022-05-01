@@ -31,9 +31,31 @@ function Edit() {
     profile.email = data.get("email");
     profile.position = data.get("position");
 
-    //
+    // make call to backend/db to properly overwrite
 
+    console.log(profile)
     navigate("/profile");
+  };
+
+  const loadFile = (event) => {
+    var image = document.getElementById("prof_pic");
+    var child = image.firstElementChild;
+    var img = URL.createObjectURL(event.target.files[0]);
+    image.innerHTML = "";
+    if (child) {
+      child.src = img;
+    } else {
+      child = document.createElement("img");
+      child.alt = profile.name;
+      child.src = img;
+      child.classList.add("MuiAvatar-img");
+      child.classList.add("css-1pqm26d-MuiAvatar-img");
+      image.appendChild(child);
+    }
+
+    // find way to actually save image to db
+    profile.image = image.firstElementChild.src;
+    console.log(profile);
   };
 
   return (
@@ -46,10 +68,11 @@ function Edit() {
                 <Button
                   component="label"
                 >
-                  <Avatar alt={profile.name} src={sid}/>
+                  <Avatar id='prof_pic' alt={profile.name} src={profile.image}/>
                   <input
                     type="file"
                     hidden
+                    onChange={loadFile}
                   />
                 </Button>
               </Stack>

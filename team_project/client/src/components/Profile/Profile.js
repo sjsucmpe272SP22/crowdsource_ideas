@@ -7,20 +7,26 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Container from "@mui/material/Container";
+import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import profile from "./profile.json";
-import sid from "./sid.jpg"
 
 const theme = createTheme();
 
 function Profile() {
+  const navigate = useNavigate();
+  const editProfile = (event) => {
+    event.preventDefault();
+    navigate("/edit");
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="xs" sx={{ p: 2 }}>
         <Stack direction="row" justifyContent="center">
           <Card sx={{ maxWidth: 1000, p: 2 }} variant="outlined">
             <Stack direction="row" justifyContent="center">
-              <Avatar alt={profile.name} src={sid} />
+              <Avatar alt={profile.name} src={profile.image} />
             </Stack>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
@@ -35,7 +41,7 @@ function Profile() {
             </CardContent>
             <Stack direction="row" justifyContent="center">
               <CardActions>
-                <Button size="small" variant="contained" href="/edit">
+                <Button size="small" variant="contained" onClick={editProfile}>
                   Edit
                 </Button>
               </CardActions>
