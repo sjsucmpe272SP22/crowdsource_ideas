@@ -21,7 +21,7 @@ function Navbar(props) {
 
     // TODO
     // need to update this to check if user is logged in
-    if (window.location.href.indexOf("signin") == -1) {
+    if (window.location.href.indexOf("signin") === -1) {
 
       event.currentTarget.style.display = "none";
       var soButton = document.getElementById("signOut");
@@ -47,7 +47,7 @@ function Navbar(props) {
     console.log(event.currentTarget.id);
 
     // TODO
-    if (event.currentTarget.id == "/profile"){
+    if (event.currentTarget.id === "/profile"){
       // if logged in, goto profile page
 
       // else goto login page

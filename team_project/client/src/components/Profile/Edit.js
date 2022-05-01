@@ -10,7 +10,6 @@ import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import profile from "./profile.json";
-import sid from "./sid.jpg"
 
 const theme = createTheme();
 
