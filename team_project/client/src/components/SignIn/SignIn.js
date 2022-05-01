@@ -14,7 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import login from "./login_credentials.json";
 import { useNavigate } from "react-router-dom";
-
+import { useState } from "react";
 function Copyright(props) {
   return (
     <Typography
@@ -34,8 +34,10 @@ function Copyright(props) {
 }
 
 const theme = createTheme();
-
+const format = /[@.]/;
 export default function SignIn() {
+  const [invalidEmail, setInvalidEmail] = useState("");
+  const [invalidPassword, setInvalidPassword] = useState("");
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -48,16 +50,29 @@ export default function SignIn() {
 
     let enteredEmail = data.get("email");
     let enteredPassword = data.get("password");
-    if (enteredEmail === login.email && enteredPassword === login.password) {
-      console.log("Success");
-      navigate("/home");
+    if(enteredEmail === ""){
+      setInvalidEmail("Enter email");
     } else {
-      console.log("Failure");
-      let emailField = document.getElementById("email");
-      console.log(emailField);
-      //emailField.setAttribute("style", "border-color:red;");
+      if(!format.test(enteredEmail)){
+        setInvalidEmail("Invalid email")
+      }
+      else if(enteredEmail !== login.email){
+        setInvalidEmail("Please sign up!");
+      } else {
+        setInvalidEmail("");
+        if(enteredPassword === ""){
+          setInvalidPassword("Enter password!");
+        } 
+        else if(enteredPassword !== login.password){
+          setInvalidPassword("Wrong password!")
+        } else{
+          setInvalidPassword("");
+          setInvalidEmail("");
+          navigate("/home");
+        }
+        
+      }
     }
-    //compare and authenticate as required
   };
 
   return (
@@ -93,7 +108,7 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
-            />
+            /> { invalidEmail !== "" && <span style={{ color: 'red', marginRight : '282px' }}> { invalidEmail }</span> }
             <TextField
               margin="normal"
               required
@@ -103,7 +118,7 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
+            /> { invalidPassword !=="" && <span style={{ color: 'red', marginRight : '260px' }}> { invalidPassword } </span> }
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
