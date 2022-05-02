@@ -3,6 +3,7 @@ const router = express.Router();
 
 var ideas = [];
 var ideasInformation = [];
+var hours = 10;
 router.post("/createIdea", (req, res) => {
   console.log("Inside Create Idea POST");
   console.log("Request Body: " + JSON.stringify(req.body));
@@ -50,6 +51,15 @@ router.get("/getIdeasInformation", (req, res) => {
     success: true,
     message: "Idea Created Successfully!",
     ideasInformation: ideasInformation,
+  });
+});
+
+router.get("/getHoursForIdea", (req, res) => {
+  console.log("Inside Get Hours Information GET");
+  return res.status(200).send({
+    success: true,
+    message: "Hours returned Successfully!",
+    hours: hours,
   });
 });
 module.exports = router;
