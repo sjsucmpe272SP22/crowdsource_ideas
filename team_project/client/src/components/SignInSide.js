@@ -16,6 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useHistory } from 'react-router-dom';
 import axios from "axios";
 // import * as configData from "./configurl.json";
+import AppBarmenu from './AppBarmenu';
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -89,7 +90,7 @@ export default function SignInSide() {
 
     return (
         <ThemeProvider theme={theme}>
-            {/* <AppBarmenu /> */}
+            <AppBarmenu />
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 <Grid
