@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import AppBarmenu from "./../AppBarmenu";
 // dummy account; no db of accounts
 import profile from "./../SignIn/login_credentials.json";
 
@@ -61,6 +61,7 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
+      <AppBarmenu />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

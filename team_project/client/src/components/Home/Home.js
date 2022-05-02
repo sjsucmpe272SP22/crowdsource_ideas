@@ -14,6 +14,7 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import AppBarmenu from './../AppBarmenu';
 import {
   BarChart,
   Bar,
@@ -72,6 +73,7 @@ const renderCustomizedLabel = ({
 
 const Home = (props) => {
   const [ideas, setIdeas] = useState([]);
+  const [hours, setHours] = useState(0);
   const [ideasInformation, setIdeasInformation] = useState([]);
   const [ideaCount, setIdeaCount] = useState([]);
   const [ideaStatus, setIdeaStatus] = useState([]);
@@ -113,6 +115,13 @@ const Home = (props) => {
   }, []);
 
   React.useEffect(() => {
+    axios.get(API + "/dashboard/getHoursForIdea").then((response) => {
+      setHours(response.data.hours);
+    });
+    console.log("HOURS", hours);
+  }, []);
+
+  React.useEffect(() => {
     axios.get(API + "/dashboard/getIdeasInformation").then((response) => {
       setIdeasInformation(response.data.ideasInformation);
     });
@@ -122,6 +131,7 @@ const Home = (props) => {
 
   return (
     <>
+    < AppBarmenu />
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Navbar bg="light" expand="lg">
@@ -271,7 +281,7 @@ const Home = (props) => {
                 style={{ fontSize: "12px" }}
                 onClick={() => handleOpenIdea(i)}
               >
-                PROD-I-{i} <a>{item.name}</a>
+                PROD-I-{i} <a>{item.name}</a> { hours !== 0 && <span style={{ color: 'blue'}}> {hours} Hours </span> }
                 <label className={"right"}>{item.date}</label>
               </li>
             ))}
