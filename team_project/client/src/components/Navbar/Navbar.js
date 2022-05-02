@@ -1,13 +1,13 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
+import * as React from "react";
+import PropTypes from "prop-types";
+import Toolbar from "@mui/material/Toolbar";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
 import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import './Navbar.css';
+import "./Navbar.css";
 
 const theme = createTheme();
 
@@ -22,14 +22,12 @@ function Navbar(props) {
     // TODO
     // need to update this to check if user is logged in
     if (window.location.href.indexOf("signin") === -1) {
-
       event.currentTarget.style.display = "none";
       var soButton = document.getElementById("signOut");
       soButton.style.display = "block";
 
       navigate("/signin");
     }
-   
   };
 
   const signOut = (event) => {
@@ -47,19 +45,18 @@ function Navbar(props) {
     console.log(event.currentTarget.id);
 
     // TODO
-    if (event.currentTarget.id === "/profile"){
+    if (event.currentTarget.id === "/profile") {
       // if logged in, goto profile page
-
       // else goto login page
     }
 
     navigate(event.currentTarget.id);
-  }
+  };
 
   return (
     <ThemeProvider theme={theme}>
       <React.Fragment>
-        <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Toolbar sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Button size="small"></Button>
           <Typography
             component="h2"
@@ -76,14 +73,24 @@ function Navbar(props) {
           <Button id="signIn" variant="contained" size="small" onClick={signIn}>
             Sign In
           </Button>
-          <Button id="signOut" variant="contained" size="small" onClick={signOut}>
+          <Button
+            id="signOut"
+            variant="contained"
+            size="small"
+            onClick={signOut}
+          >
             Sign Out
           </Button>
         </Toolbar>
         <Toolbar
           component="nav"
           variant="dense"
-          sx={{ justifyContent: 'space-between', overflowX: 'auto', borderBottom: 1, borderColor: 'divider' }}
+          sx={{
+            justifyContent: "space-between",
+            overflowX: "auto",
+            borderBottom: 1,
+            borderColor: "divider",
+          }}
         >
           {sections.map((section) => (
             <Link
@@ -110,7 +117,7 @@ Navbar.propTypes = {
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired,
-    }),
+    })
   ).isRequired,
   title: PropTypes.string.isRequired,
 };
