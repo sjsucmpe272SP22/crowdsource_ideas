@@ -26,7 +26,6 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Navbar sections={sections} /> */}
         <Routes>
           <Route path="/home" element={<Home />} />
         </Routes>

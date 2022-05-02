@@ -11,12 +11,22 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const AddIdeaForm = () => {
+  let newDate = new Date();
+  let date = newDate.getDate();
+  let month = newDate.getMonth() + 1;
+  let year = newDate.getFullYear();
+  let currentDate = `${year}${"-"}${
+    month < 10 ? `0${month}` : `${month}`
+  }${"-"}${date}`;
+
   const navigate = useNavigate();
   const [formValue, setFormValue] = useState({
     workspace: "",
     name: "",
     description: "",
     category: "",
+    date: currentDate,
+    status: "AlreadyExists",
   });
 
   const handleSubmit = (event) => {

@@ -14,7 +14,22 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-// import Navbar component
+import {
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Sector,
+} from "recharts";
+
+import "./Home.css";
 
 import Grid from "@mui/material/Grid";
 
@@ -26,9 +41,40 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const Home = () => {
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({
+  cx,
+  cy,
+  midAngle,
+  innerRadius,
+  outerRadius,
+  percent,
+  index,
+}) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  return (
+    <text
+      x={x}
+      y={y}
+      fill="white"
+      textAnchor={x > cx ? "start" : "end"}
+      dominantBaseline="central"
+    >
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
+
+const Home = (props) => {
   const [ideas, setIdeas] = useState([]);
   const [ideasInformation, setIdeasInformation] = useState([]);
+  const [ideaCount, setIdeaCount] = useState([]);
+  const [ideaStatus, setIdeaStatus] = useState([]);
   const [open, setOpen] = useState(false);
   const [openIdea, setOpenIdea] = useState(false);
   const [index, setIndex] = useState(-1);
@@ -36,12 +82,12 @@ const Home = () => {
   const handleClose = () => setOpen(false);
   const handleClickIdea = () => {
     console.log("idea clicked");
-  }
+  };
   const handleOpenIdea = (id) => {
     setOpenIdea(true);
     console.log("success", id);
-    setIndex(id)
-  }
+    setIndex(id);
+  };
   const handleCloseIdea = () => setOpenIdea(false);
   const style = {
     position: "absolute",
@@ -58,6 +104,10 @@ const Home = () => {
   React.useEffect(() => {
     axios.get(API + "/dashboard/getIdeas").then((response) => {
       setIdeas(response.data.ideas);
+      setIdeaStatus(response.data.ideaStatus);
+      if (response.data.ideaCount !== null) {
+        setIdeaCount(response.data.ideaCount);
+      }
     });
     console.log("IDEALIST", ideas);
   }, []);
@@ -67,20 +117,17 @@ const Home = () => {
       setIdeasInformation(response.data.ideasInformation);
     });
     console.log("IDEAINFOLIST", ideasInformation);
-  }, []);
-
-
-
+    console.log(ideaStatus);
+  }, [ideaStatus]);
 
   return (
     <>
-      {/* call Navbar Component */}
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Navbar bg="light" expand="lg">
             <Navbar.Brand href="/home">
               <h2 style={{ color: "#0173ce" }}>
-                &nbsp;&nbsp;&nbsp; Crowdsource Ideas
+                &nbsp;&nbsp;&nbsp; Ideas Overview
               </h2>
             </Navbar.Brand>
             <Button variant="contained" onClick={handleOpen}>
@@ -107,15 +154,92 @@ const Home = () => {
               <Box sx={style}>
                 <h3>Idea Information</h3>
                 <br />
-                <OpenIdeaForm infoIdea = {ideasInformation} ideaIndex = {index} />
+                <OpenIdeaForm infoIdea={ideasInformation} ideaIndex={index} />
               </Box>
             </Modal>
           </Navbar>
         </Grid>
         <Grid item xs={8}>
-          <Item>xs=8</Item>
+          <Item>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status</h4>
+            <br />
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                <ResponsiveContainer width="100%" height="100%" aspect={1.5}>
+                  <PieChart width={400} height={400}>
+                    <Pie
+                      data={ideaStatus}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      label={renderCustomizedLabel}
+                      outerRadius={80}
+                      fill="#8884d8"
+                      dataKey="count"
+                    >
+                      {ideaStatus.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={COLORS[index % COLORS.length]}
+                        />
+                      ))}
+                    </Pie>
+                  </PieChart>
+                </ResponsiveContainer>
+              </Grid>
+              <Grid item xs={8}>
+                <Card sx={{ minWidth: 275 }}>
+                  <CardContent>
+                    <Typography
+                      variant="h7"
+                      component="div"
+                      color="text.secondary"
+                    >
+                      <li>Future Consideration</li>
+                      <br />
+                      <li>Already Exists</li>
+                      <br />
+                      <li>Will Not Implement</li>
+                    </Typography>
+
+                    {/* <Typography variant="body2" color="text.secondary">
+                      <br />
+                      CMPE-272 Ideas Portal
+                    </Typography> */}
+                  </CardContent>
+                  {/* <CardActions>
+                  <Button size="small">Learn More</Button>
+                </CardActions> */}
+                </Card>
+              </Grid>
+            </Grid>
+          </Item>
+          <Item>
+            <hr />
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ideas</h4>
+            <br />
+            <ResponsiveContainer height="100%" width="60%" aspect={2.4}>
+              <BarChart
+                width={500}
+                height={300}
+                data={ideaCount}
+                margin={{
+                  top: 5,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+              >
+                <XAxis dataKey="date" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="count" fill="#8884d8" />
+              </BarChart>
+            </ResponsiveContainer>
+          </Item>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} style={{ justifyContent: "space-between" }}>
           <Item>
             <Grid>
               <Card sx={{ minWidth: 275 }}>
@@ -138,15 +262,27 @@ const Home = () => {
                 </CardActions> */}
               </Card>
             </Grid>
-            <br />
+            <hr />
             <p>
               <strong>New Ideas</strong>
             </p>
             {ideas.map((item, i) => (
-              <li style={{ fontSize: "12px" }} onClick={() => handleOpenIdea(i)}>
+              <li
+                style={{ fontSize: "12px" }}
+                onClick={() => handleOpenIdea(i)}
+              >
                 PROD-I-{i} <a>{item.name}</a>
+                <label className={"right"}>{item.date}</label>
               </li>
             ))}
+            <hr />
+            <p>
+              <strong>Popular Ideas</strong>
+            </p>
+            <hr />
+            <p>
+              <strong>Top Contributors</strong>
+            </p>
           </Item>
         </Grid>
       </Grid>
