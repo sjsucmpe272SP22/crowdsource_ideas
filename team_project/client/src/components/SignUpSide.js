@@ -13,8 +13,8 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import AppBarmenu from './AppBarmenu';
-import { useHistory } from 'react-router-dom';
-import axios from "axios";
+// import { useHistory } from 'react-router-dom';
+// import axios from "axios";
 // import * as configData from "./configurl.json";
 import AppBarmenu from './AppBarmenu';
 function Copyright(props) {
@@ -37,7 +37,7 @@ var def = true
 export default function SignUpSide() {
     const [text, setText] = React.useState("");
     const [errorMessage, setErrorMessage] = React.useState("");
-    const [emptyMessage, setEmptyMessage] = React.useState("");
+    // const [emptyMessage, setEmptyMessage] = React.useState("");
 
     React.useEffect(() => {
         // Set errorMessage only if text is equal or bigger than MAX_LENGTH

@@ -13,13 +13,14 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import AppBarmenu from './AppBarmenu';
-import { useHistory } from 'react-router-dom';
-import axios from "axios";
+// import { useHistory } from 'react-router-dom';
+// import axios from "axios";
 // import * as configData from "./configurl.json";
 import AppBarmenu from './AppBarmenu';
 import login from "./SignIn/login_credentials.json";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -42,7 +43,7 @@ export default function SignInSide() {
     const [invalidPassword, setInvalidPassword] = useState("");
     const [text, setText] = React.useState("");
     const [errorMessage, setErrorMessage] = React.useState("");
-    const [emptyMessage, setEmptyMessage] = React.useState("");
+    // const [emptyMessage, setEmptyMessage] = React.useState("");
     const navigate = useNavigate();
 
     // React.useEffect(() => {

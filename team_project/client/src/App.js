@@ -3,24 +3,26 @@ import "./App.css";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 // import SignIn from "./SignIn";
 // import SignUp from "./SignUp";
-import Navbar from "./components/Navbar/Navbar";
+// import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
 import Profile from "./components/Profile/Profile";
 import Edit from "./components/Profile/Edit";
-import HeaderOne from "./components/SignInSide";
+// import HeaderOne from "./components/SignInSide";
 import SignInSide from "./components/SignInSide";
 import Welcome from "./components/Welcome";
 import SignUpSide from "./components/SignUpSide";
-const sections = [
-  { title: "Ideas", url: "home" },
-  { title: "Guide", url: "#" },
-  { title: "Coming Soon", url: "#" },
-  { title: "Users", url: "#" },
-  { title: "Research", url: "#" },
-  { title: "Profile", url: "/profile" },
-];
+import Research from "./components/Research/Research"
+
+// const sections = [
+//   { title: "Ideas", url: "home" },
+//   { title: "Guide", url: "#" },
+//   { title: "Coming Soon", url: "#" },
+//   { title: "Users", url: "#" },
+//   { title: "Research", url: "#" },
+//   { title: "Profile", url: "/profile" },
+// ];
 
 function App() {
   return (
@@ -49,6 +51,9 @@ function App() {
         </Routes>
         <Routes>
           <Route path="welcome" element={<Welcome />} />
+        </Routes>
+        <Routes>
+          <Route path="research" element={<Research />} />
         </Routes>
       </Router>
     </div>
