@@ -12,7 +12,7 @@ import Edit from "./components/Profile/Edit";
 import HeaderOne from "./components/SignInSide";
 import SignInSide from "./components/SignInSide";
 import Welcome from "./components/Welcome";
-
+import SignUpSide from "./components/SignUpSide";
 const sections = [
   { title: 'Ideas', url: '/home' },
   { title: 'Guide', url: '#' },
@@ -30,10 +30,10 @@ function App() {
           <Route path="/home" element={<Home />} />
         </Routes>
         <Routes>
-          <Route path="signin" element={<SignIn />} />
+          <Route path="signin1" element={<SignIn />} />
         </Routes>
         <Routes>
-          <Route path="signup" element={<SignUp />} />
+          <Route path="signup1" element={<SignUp />} />
         </Routes>
         <Routes>
           <Route path="profile" element={<Profile />} />
@@ -42,7 +42,10 @@ function App() {
           <Route path="edit" element={<Edit />} />
         </Routes>
         <Routes>
-          <Route path="welcome1" element={<SignInSide />} />
+          <Route path="signin" element={<SignInSide />} />
+        </Routes>
+        <Routes>
+          <Route path="signup" element={<SignUpSide />} />
         </Routes>
         <Routes>
           <Route path="welcome" element={<Welcome />} />
