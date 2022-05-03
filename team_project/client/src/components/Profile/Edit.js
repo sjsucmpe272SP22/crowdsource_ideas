@@ -24,18 +24,19 @@ function Edit() {
   const updateProfile = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      fname: data.get("fname"),
-      lname: data.get("lname"),
-      email: data.get("email"),
-      position: data.get("position"),
-    });
+    // console.log({
+    //   fname: data.get("fname"),
+    //   lname: data.get("lname"),
+    //   email: data.get("email"),
+    //   position: data.get("position"),
+    // });
 
     // TODO
     // need permanent solution
     profile.fname = data.get("fname");
     profile.lname = data.get("lname");
     profile.email = data.get("email");
+    profile.company = data.get("company");
     profile.position = data.get("position");
 
     // TODO
@@ -129,6 +130,15 @@ function Edit() {
                       name="email"
                       label="Email" 
                       defaultValue={profile.email}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField 
+                      fullWidth
+                      id="company" 
+                      name="company"
+                      label="Company" 
+                      defaultValue={profile.company} 
                     />
                   </Grid>
                   <Grid item xs={12}>
