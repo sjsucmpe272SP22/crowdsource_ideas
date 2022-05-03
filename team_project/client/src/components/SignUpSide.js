@@ -17,9 +17,6 @@ import { useHistory } from 'react-router-dom';
 import axios from "axios";
 // import * as configData from "./configurl.json";
 import AppBarmenu from './AppBarmenu';
-import login from "./SignIn/login_credentials.json";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -36,99 +33,60 @@ function Copyright(props) {
 const theme = createTheme();
 const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 var def = true
-const format = /[@.]/;
-export default function SignInSide() {
-    const [invalidEmail, setInvalidEmail] = useState("");
-    const [invalidPassword, setInvalidPassword] = useState("");
+
+export default function SignUpSide() {
     const [text, setText] = React.useState("");
     const [errorMessage, setErrorMessage] = React.useState("");
     const [emptyMessage, setEmptyMessage] = React.useState("");
-    const navigate = useNavigate();
 
-    // React.useEffect(() => {
-    //     // Set errorMessage only if text is equal or bigger than MAX_LENGTH
-    //     if (!regex.test(text)) {
-    //         setErrorMessage(
-    //             "Please enter a valid Email ID"
-    //         );
-    //     }
-    // }, [text]);
-    // React.useEffect(() => {
+    React.useEffect(() => {
+        // Set errorMessage only if text is equal or bigger than MAX_LENGTH
+        if (!regex.test(text)) {
+            setErrorMessage(
+                "Please enter a valid Email ID"
+            );
+        }
+    }, [text]);
+    React.useEffect(() => {
 
-    //     if (regex.test(text) && errorMessage) {
-    //         setErrorMessage("");
-    //     }
-    // }, [text, errorMessage]);
+        if (regex.test(text) && errorMessage) {
+            setErrorMessage("");
+        }
+    }, [text, errorMessage]);
     // const history = useHistory();
     var lengthError = false;
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     // console.log(configData.default);
-    //     // const data = new FormData(event.currentTarget);
-
-    //     // // let val  = (def) ? false : (!regex.test(text))
-    //     // let val = false
-    //     // if (def) {
-    //     //     val = false
-    //     // } else {
-    //     //     val = regex.test(text)
-    //     // }
-    //     // lengthError = (document.getElementById("password").value.length > 0) ? true : false
-    //     // if (lengthError && val) {
-    //     //     var requestBody = {
-    //     //         "email": document.getElementById("email").value,
-    //     //         "password": document.getElementById("password").value
-    //     //     }
-    //     //     // axios.post("http://127.0.0.1:8000/login", requestBody)
-    //     //     axios.post("http://" + configData.default.LOCAL_URL + ":8000/login", requestBody)
-
-    //     //         .then(res => {
-    //     //             const result = res.data.customer_id;
-    //     //             localStorage.setItem("customerid", JSON.stringify(result))
-    //     //             history.push('/mybookings');
-    //     //         })
-
-    //     // } else {
-
-    //     // }
-
-    // };
-
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-          email: data.get("email"),
-          password: data.get("password"),
-        });
-        console.log(login);
-    
-        let enteredEmail = data.get("email");
-        let enteredPassword = data.get("password");
-        if(enteredEmail === ""){
-          setInvalidEmail("Enter email");
-        } else {
-          if(!format.test(enteredEmail)){
-            setInvalidEmail("Invalid email")
-          }
-          else if(enteredEmail !== login.email){
-            // setInvalidEmail("Please sign up!");
-          } else {
-            setInvalidEmail("");
-            if(enteredPassword === ""){
-              setInvalidPassword("Enter password!");
-            } 
-            else if(enteredPassword !== login.password){
-              setInvalidPassword("Wrong password!")
-            } else{
-              setInvalidPassword("");
-              setInvalidEmail("");
-              navigate("/home");
-            }
-            
-          }
-        }
-      };
+        // console.log(configData.default);
+        // const data = new FormData(event.currentTarget);
+
+        // // let val  = (def) ? false : (!regex.test(text))
+        // let val = false
+        // if (def) {
+        //     val = false
+        // } else {
+        //     val = regex.test(text)
+        // }
+        // lengthError = (document.getElementById("password").value.length > 0) ? true : false
+        // if (lengthError && val) {
+        //     var requestBody = {
+        //         "email": document.getElementById("email").value,
+        //         "password": document.getElementById("password").value
+        //     }
+        //     // axios.post("http://127.0.0.1:8000/login", requestBody)
+        //     axios.post("http://" + configData.default.LOCAL_URL + ":8000/login", requestBody)
+
+        //         .then(res => {
+        //             const result = res.data.customer_id;
+        //             localStorage.setItem("customerid", JSON.stringify(result))
+        //             history.push('/mybookings');
+        //         })
+
+        // } else {
+
+        // }
+
+    };
 
     return (
         <ThemeProvider theme={theme}>
@@ -168,6 +126,32 @@ export default function SignInSide() {
                             Sign in
                         </Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                        <TextField
+                                error={(def) ? false : (!regex.test(text))}
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="fname"
+                                label="First Name"
+                                name="fname"
+                                autoComplete="fname"
+                                autoFocus
+                                helperText={errorMessage}
+                                onChange={(e) => { setText(e.target.value); def = false }}
+                            />
+                            <TextField
+                                error={(def) ? false : (!regex.test(text))}
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="lname"
+                                label="Last Name"
+                                name="lname"
+                                autoComplete="lname"
+                                autoFocus
+                                helperText={errorMessage}
+                                onChange={(e) => { setText(e.target.value); def = false }}
+                            />
                             <TextField
                                 error={(def) ? false : (!regex.test(text))}
                                 margin="normal"
@@ -180,7 +164,7 @@ export default function SignInSide() {
                                 autoFocus
                                 helperText={errorMessage}
                                 onChange={(e) => { setText(e.target.value); def = false }}
-                            /> { invalidEmail !== "" && <span style={{ color: 'red', marginRight : '620px' }}> { invalidEmail }</span> }
+                            />
                             <TextField
                                 margin="normal"
                                 required
@@ -200,10 +184,10 @@ export default function SignInSide() {
                                         lengthError = false
                                     }
                                 }}
-                            /> { invalidPassword !=="" && <span style={{ color: 'red', marginRight : '575px' }}> { invalidPassword } </span> }
+                            />
                             <FormControlLabel
                                 control={<Checkbox value="remember" color="primary" />}
-                                label="Remember me"
+                                label="I want to receive inspiration, marketing promotions and updates via email."
                             />
                             <Button
                                 type="submit"
@@ -211,17 +195,16 @@ export default function SignInSide() {
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                             >
-                                Sign In
+                                Sign Up
                             </Button>
                             <Grid container>
                                 <Grid item xs>
                                     <Link href="#" variant="body2">
-                                        Forgot password?
                                     </Link>
                                 </Grid>
                                 <Grid item>
                                     <Link href="#" variant="body2">
-                                        {"Don't have an account? Sign Up"}
+                                        {"Already have an account? Sign In"}
                                     </Link>
                                 </Grid>
                             </Grid>
