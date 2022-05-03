@@ -6,10 +6,10 @@ var ideasInformation = [];
 var hours = 10;
 // logic for creating pie chart on dashboard
 const ideaStatus = [
-  { status: "AlreadyExists", count: 3 },
+  { status: "AlreadyExists", count: 4 },
   { status: "WillNotImplement", count: 2 },
-  { status: "FutureConsideration", count: 6 },
-  { status: "Planned", count: 5 },
+  { status: "FutureConsideration", count: 3 },
+  { status: "Planned", count: 3 },
   { status: "Shipped", count: 2 },
   { status: "NeedsReview", count: 1 },
 ];
@@ -61,7 +61,7 @@ router.post("/createIdea", (req, res) => {
 
 router.get("/getIdeas", (req, res) => {
   console.log("Inside Get Ideas GET");
-  console.log(ideaCount);
+  // console.log(ideaCount);
   return res.status(200).send({
     success: true,
     message: "Idea Created Successfully!",
@@ -71,9 +71,7 @@ router.get("/getIdeas", (req, res) => {
   });
 });
 
-
 // IDEA INFORMATION COMPONENT
-
 
 router.post("/createIdeaInformation", (req, res) => {
   console.log("Inside Create Idea INFormation POST");
@@ -81,6 +79,11 @@ router.post("/createIdeaInformation", (req, res) => {
   if (req.body.idea) {
     ideasInformation.push(req.body.idea);
     console.log("Idea Information Created Successfully! : " + ideasInformation);
+    ideaStatus.map((ideastatus) => {
+      if (ideastatus.status === req.body.idea.status) {
+        ideastatus.count += 1;
+      }
+    });
     return res.status(200).send({
       success: true,
       message: "Idea Information Created Successfully!",
@@ -91,10 +94,12 @@ router.post("/createIdeaInformation", (req, res) => {
 
 router.get("/getIdeasInformation", (req, res) => {
   console.log("Inside Get Ideas Information GET");
+  console.log(ideaStatus);
   return res.status(200).send({
     success: true,
     message: "Idea Created Successfully!",
     ideasInformation: ideasInformation,
+    ideaStatus: ideaStatus,
   });
 });
 

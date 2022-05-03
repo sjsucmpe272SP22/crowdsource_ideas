@@ -14,7 +14,7 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import AppBarmenu from './../AppBarmenu';
+import AppBarmenu from "./../AppBarmenu";
 import {
   BarChart,
   Bar,
@@ -28,6 +28,8 @@ import {
   PieChart,
   Pie,
   Sector,
+  PieLabel,
+  Label,
 } from "recharts";
 
 import "./Home.css";
@@ -42,36 +44,19 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
-
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({
-  cx,
-  cy,
-  midAngle,
-  innerRadius,
-  outerRadius,
-  percent,
-  index,
-}) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-  return (
-    <text
-      x={x}
-      y={y}
-      fill="white"
-      textAnchor={x > cx ? "start" : "end"}
-      dominantBaseline="central"
-    >
-      {`${(percent * 100).toFixed(0)}%`}
-    </text>
-  );
-};
+const COLORS = [
+  "#0088FE",
+  "#00C49F",
+  "#FFC20F",
+  "#F39200",
+  "#F35C6E",
+  "#5B61AA",
+];
 
 const Home = (props) => {
+  const renderCustomLabel = (entry) => {
+    return `${entry.status} ${entry.count}`;
+  };
   const [ideas, setIdeas] = useState([]);
   const [hours, setHours] = useState(0);
   const [ideasInformation, setIdeasInformation] = useState([]);
@@ -112,26 +97,27 @@ const Home = (props) => {
       }
     });
     console.log("IDEALIST", ideas);
-  }, []);
 
-  React.useEffect(() => {
     axios.get(API + "/dashboard/getHoursForIdea").then((response) => {
       setHours(response.data.hours);
     });
     console.log("HOURS", hours);
-  }, []);
 
-  React.useEffect(() => {
     axios.get(API + "/dashboard/getIdeasInformation").then((response) => {
       setIdeasInformation(response.data.ideasInformation);
+      setIdeaStatus(response.data.ideaStatus);
     });
-    console.log("IDEAINFOLIST", ideasInformation);
+    console.log("IDEAINFOLIST", JSON.stringify(ideasInformation));
     console.log(ideaStatus);
-  }, [ideaStatus]);
+  }, []);
+
+  let renderLabel = function (entry) {
+    return entry.name;
+  };
 
   return (
     <>
-    < AppBarmenu />
+      <AppBarmenu />
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Navbar bg="light" expand="lg">
@@ -174,52 +160,84 @@ const Home = (props) => {
             <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status</h4>
             <br />
             <Grid container spacing={2}>
-              <Grid item xs={4}>
-                <ResponsiveContainer width="100%" height="100%" aspect={1.5}>
-                  <PieChart width={400} height={400}>
+              <Grid item xs={5}>
+                <ResponsiveContainer width="100%" height="99%" aspect={2}>
+                  <PieChart>
                     <Pie
                       data={ideaStatus}
-                      cx="50%"
-                      cy="50%"
-                      labelLine={false}
-                      label={renderCustomizedLabel}
-                      outerRadius={80}
-                      fill="#8884d8"
                       dataKey="count"
+                      outerRadius={100}
+                      innerRadius={80}
+                      startAngle={90}
+                      endAngle={-270}
+                      isAnimationActive={true}
+                      label
+                      nameKey="status"
                     >
                       {ideaStatus.map((entry, index) => (
-                        <Cell
-                          key={`cell-${index}`}
-                          fill={COLORS[index % COLORS.length]}
-                        />
+                        <Cell key={`cell-${entry}`} fill={COLORS[index]} />
                       ))}
                     </Pie>
+                    <Tooltip />
                   </PieChart>
                 </ResponsiveContainer>
               </Grid>
-              <Grid item xs={8}>
-                <Card sx={{ minWidth: 275 }}>
+              <Grid item xs={7}>
+                <Card sx={{ height: 160, width: 600 }}>
                   <CardContent>
-                    <Typography
-                      variant="h7"
-                      component="div"
-                      color="text.secondary"
-                    >
-                      <li>Future Consideration</li>
-                      <br />
-                      <li>Already Exists</li>
-                      <br />
-                      <li>Will Not Implement</li>
-                    </Typography>
-
-                    {/* <Typography variant="body2" color="text.secondary">
-                      <br />
-                      CMPE-272 Ideas Portal
-                    </Typography> */}
+                    <Grid container spacing={2}>
+                      <Grid item xs={6}>
+                        <div class="input-color">
+                          <div
+                            class="color-box"
+                            style={{ "background-color": "#0088FE" }}
+                          ></div>
+                          &nbsp;&nbsp;&nbsp;&nbsp; Already Exists
+                        </div>
+                        <hr />
+                        <div class="input-color">
+                          <div
+                            class="color-box"
+                            style={{ "background-color": "#00C49F" }}
+                          ></div>
+                          &nbsp;&nbsp;&nbsp;&nbsp; Will Not Implement
+                        </div>
+                        <hr />
+                        <div class="input-color">
+                          <div
+                            class="color-box"
+                            style={{ "background-color": "#FFC20F" }}
+                          ></div>
+                          &nbsp;&nbsp;&nbsp;&nbsp; Future Consideration
+                        </div>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <div class="input-color">
+                          <div
+                            class="color-box"
+                            style={{ "background-color": "#F39200" }}
+                          ></div>
+                          &nbsp;&nbsp;&nbsp;&nbsp; Planned
+                        </div>
+                        <hr />
+                        <div class="input-color">
+                          <div
+                            class="color-box"
+                            style={{ "background-color": "#F35C6E" }}
+                          ></div>
+                          &nbsp;&nbsp;&nbsp;&nbsp; Shipped
+                        </div>
+                        <hr />
+                        <div class="input-color">
+                          <div
+                            class="color-box"
+                            style={{ "background-color": "#5B61AA" }}
+                          ></div>
+                          &nbsp;&nbsp;&nbsp;&nbsp; Needs Review
+                        </div>
+                      </Grid>
+                    </Grid>
                   </CardContent>
-                  {/* <CardActions>
-                  <Button size="small">Learn More</Button>
-                </CardActions> */}
                 </Card>
               </Grid>
             </Grid>
@@ -228,7 +246,7 @@ const Home = (props) => {
             <hr />
             <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ideas</h4>
             <br />
-            <ResponsiveContainer height="100%" width="60%" aspect={2.4}>
+            <ResponsiveContainer height="100%" width="70%" aspect={2.4}>
               <BarChart
                 width={500}
                 height={300}
@@ -250,7 +268,7 @@ const Home = (props) => {
           </Item>
         </Grid>
         <Grid item xs={4} style={{ justifyContent: "space-between" }}>
-          <Item>
+          <Item style={{ height: "100%" }}>
             <Grid>
               <Card sx={{ minWidth: 275 }}>
                 <CardContent>
@@ -281,7 +299,10 @@ const Home = (props) => {
                 style={{ fontSize: "12px" }}
                 onClick={() => handleOpenIdea(i)}
               >
-                PROD-I-{i} <a>{item.name}</a> { hours !== 0 && <span style={{ color: 'blue'}}> {hours} Hours </span> }
+                PROD-I-{i} <a>{item.name}</a>{" "}
+                {hours !== 0 && (
+                  <span style={{ color: "blue" }}> {hours} Hours </span>
+                )}
                 <label className={"right"}>{item.date}</label>
               </li>
             ))}

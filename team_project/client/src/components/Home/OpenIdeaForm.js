@@ -18,20 +18,20 @@ const OpenIdeaForm = (props) => {
     comments: "",
     todo: "",
     status: "",
-    vote: vote
+    vote: vote,
   });
   // const [vote, setVote] = useState(0);
   const handleVote = (event) => {
     event.preventDefault();
-    setVote(vote+1);
+    setVote(vote + 1);
     console.log("Props received1", props.infoIdea);
     console.log("Props received2", props.ideaIndex);
-  }
+  };
   const handleSubmit = (event) => {
-     event.preventDefault();
-     console.log(formValue);
-     axios.post(API + "/dashboard/createIdeaInformation", { idea: formValue });
-     window.location.reload(false);
+    event.preventDefault();
+    console.log(formValue);
+    axios.post(API + "/dashboard/createIdeaInformation", { idea: formValue });
+    window.location.reload(false);
   };
 
   const handleChange = (event) => {
@@ -40,13 +40,18 @@ const OpenIdeaForm = (props) => {
   };
 
   React.useEffect(() => {
-    if(Object.keys(props.infoIdea).length !== 0 && Object.keys(props.infoIdea).length > props.ideaIndex) {
+    if (
+      Object.keys(props.infoIdea).length !== 0 &&
+      Object.keys(props.infoIdea).length > props.ideaIndex
+    ) {
       console.log("condition check successful", props);
-      document.getElementById("filled-basic-comments").value = props.infoIdea[props.ideaIndex].comments;
-      document.getElementById("filled-basic-todo").value = props.infoIdea[props.ideaIndex].todo;
-      document.getElementById("demo-simple-select-status").value = props.infoIdea[props.ideaIndex].status;
-      
-    } else{
+      document.getElementById("filled-basic-comments").value =
+        props.infoIdea[props.ideaIndex].comments;
+      document.getElementById("filled-basic-todo").value =
+        props.infoIdea[props.ideaIndex].todo;
+      document.getElementById("demo-simple-select-status").value =
+        props.infoIdea[props.ideaIndex].status;
+    } else {
       console.log("condition did not pass");
       document.getElementById("filled-basic-comments").value = "";
       document.getElementById("filled-basic-todo").value = "";
@@ -92,21 +97,25 @@ const OpenIdeaForm = (props) => {
             onChange={handleChange}
             name="status"
           >
-            <MenuItem value={"Needs review"}>Needs review</MenuItem>
-            <MenuItem value={"Future consideration"}>Future consideration</MenuItem>
-            <MenuItem value={"Already exists"}>Already exists</MenuItem>
-            <MenuItem value={"Will not implement"}>Will not implement</MenuItem>
+            <MenuItem value={"NeedsReview"}>Needs review</MenuItem>
+            <MenuItem value={"FutureConsideration"}>
+              Future consideration
+            </MenuItem>
+            <MenuItem value={"AlreadyExists"}>Already exists</MenuItem>
+            <MenuItem value={"WillNotImplementt"}>Will not implement</MenuItem>
             <MenuItem value={"Planned"}>Planned</MenuItem>
           </Select>
         </FormControl>
-        <hr/>
+        <hr />
         <FormControl fullWidth>
           <Button
             variant="contained"
             type="submit"
             size="lg"
             onClick={handleVote}
-          > Vote ({ vote })
+          >
+            {" "}
+            Vote ({vote})
           </Button>
         </FormControl>
         <hr />
@@ -116,7 +125,9 @@ const OpenIdeaForm = (props) => {
             type="submit"
             size="lg"
             onClick={handleSubmit}
-          > Implement Idea
+          >
+            {" "}
+            Implement Idea
           </Button>
         </FormControl>
         <hr />
@@ -126,7 +137,9 @@ const OpenIdeaForm = (props) => {
             type="submit"
             size="lg"
             //onClick={handleSubmit}
-          > Ship Idea
+          >
+            {" "}
+            Ship Idea
           </Button>
         </FormControl>
       </Form>
