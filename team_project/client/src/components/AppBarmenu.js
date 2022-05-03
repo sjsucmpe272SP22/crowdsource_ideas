@@ -1,76 +1,76 @@
-import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
+import * as React from "react";
+import { styled, alpha } from "@mui/material/styles";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import InputBase from "@mui/material/InputBase";
 // import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
 // import SearchIcon from '@mui/icons-material/Search';
 // import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
+import MailIcon from "@mui/icons-material/Mail";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import MoreIcon from "@mui/icons-material/MoreVert";
 import SearchBar from "material-ui-search-bar";
-import Drawer from '@material-ui/core/Drawer';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import Drawer from "@material-ui/core/Drawer";
+import clsx from "clsx";
+import { makeStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
 // import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 // import * as configData from "./configurl.json";
 const useStyles = makeStyles({
   list: {
     width: 250,
   },
   fullList: {
-    width: 'auto',
+    width: "auto",
   },
 });
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
+  "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(3),
-    width: 'auto',
+    width: "auto",
   },
 }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
+const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
+  color: "inherit",
+  "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "20ch",
     },
   },
 }));
@@ -81,7 +81,7 @@ export default function PrimarySearchAppBar() {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-//   const [backendData, setBackendData] = useState(0);
+  //   const [backendData, setBackendData] = useState(0);
   const [state, setState] = React.useState({
     left: false,
   });
@@ -89,20 +89,20 @@ export default function PrimarySearchAppBar() {
   const menuOptions = [
     {
       label: "Dashboard",
-      nav: "/home"
+      nav: "/home",
     },
     {
       label: "Profile",
-      nav: "/profile"
+      nav: "/profile",
     },
     {
       label: "About Us",
-      nav: "/welcome"
+      nav: "/welcome",
     },
     {
       label: "Sign Out",
-      nav: "/signin"
-    }
+      nav: "/signin",
+    },
   ];
 
   const classes = useStyles();
@@ -125,17 +125,20 @@ export default function PrimarySearchAppBar() {
 
   const handleSearch = (event) => {
     console.log(event.target.value);
-  }
+  };
 
   const handleMenuOpen = (event) => {
     console.log("hiu");
-  }
+  };
 
   const handleNav = (value) => {
     console.log(value);
-  }
+  };
   const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
       return;
     }
 
@@ -145,40 +148,35 @@ export default function PrimarySearchAppBar() {
   const list = (anchor) => (
     <div
       className={clsx(classes.list, {
-        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+        [classes.fullList]: anchor === "top" || anchor === "bottom",
       })}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-
       <List>
-
         {menuOptions.map((menu) => (
-
-          <ListItem button key={menu.label} component={Link} to={menu.nav} >
-
+          <ListItem button key={menu.label} component={Link} to={menu.nav}>
             <ListItemText primary={menu.label} />
-
           </ListItem>
         ))}
       </List>
     </div>
   );
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       id={menuId}
       keepMounted
       transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
@@ -188,25 +186,24 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       id={mobileMenuId}
       keepMounted
       transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-
-        <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -220,27 +217,27 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
-//   useEffect(() => {
-//     let a = localStorage.getItem("customerid");
-//     console.log(JSON.parse(a));
-//     axios.get('http://' + configData.default.LOCAL_URL + ':8000/fetch-rewards?customer=' + a)
-//       .then(res => {
-//         const per = res.data;
-//         console.log("from the api", per);
-//         setBackendData(per.results);
-//         localStorage.setItem(
-//           "reward-points",
-//           per.results
-//         );
+  //   useEffect(() => {
+  //     let a = localStorage.getItem("customerid");
+  //     console.log(JSON.parse(a));
+  //     axios.get('http://' + configData.default.LOCAL_URL + ':8000/fetch-rewards?customer=' + a)
+  //       .then(res => {
+  //         const per = res.data;
+  //         console.log("from the api", per);
+  //         setBackendData(per.results);
+  //         localStorage.setItem(
+  //           "reward-points",
+  //           per.results
+  //         );
 
-//       })
-//   }, []);
+  //       })
+  //   }, []);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
-            onClick={toggleDrawer('left', true)}
+            onClick={toggleDrawer("left", true)}
             size="large"
             edge="start"
             color="inherit"
@@ -253,12 +250,14 @@ export default function PrimarySearchAppBar() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
+            sx={{ display: { xs: "none", sm: "block" } }}
+          ></Typography>
+          <Drawer
+            anchor="left"
+            open={state.left}
+            onClose={toggleDrawer("left", false)}
           >
-
-          </Typography>
-          <Drawer anchor="left" open={state.left} onClose={toggleDrawer('left', false)}>
-            {list('left')}
+            {list("left")}
             {/* <h2> Anirudh </h2> */}
           </Drawer>
 

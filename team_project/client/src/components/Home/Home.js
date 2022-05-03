@@ -57,6 +57,7 @@ const Home = (props) => {
   const renderCustomLabel = (entry) => {
     return `${entry.status} ${entry.count}`;
   };
+  const [totalCount, setCount] = useState(0);
   const [ideas, setIdeas] = useState([]);
   const [hours, setHours] = useState(0);
   const [ideasInformation, setIdeasInformation] = useState([]);
@@ -65,15 +66,14 @@ const Home = (props) => {
   const [open, setOpen] = useState(false);
   const [openIdea, setOpenIdea] = useState(false);
   const [index, setIndex] = useState(-1);
+  const [votes, setVotes] = useState(0);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleClickIdea = () => {
-    console.log("idea clicked");
-  };
   const handleOpenIdea = (id) => {
     setOpenIdea(true);
     console.log("success", id);
     setIndex(id);
+    setVotes(ideas[id].votes);
   };
   const handleCloseIdea = () => setOpenIdea(false);
   const style = {
@@ -92,6 +92,7 @@ const Home = (props) => {
     axios.get(API + "/dashboard/getIdeas").then((response) => {
       setIdeas(response.data.ideas);
       setIdeaStatus(response.data.ideaStatus);
+      setCount(response.data.totalCount);
       if (response.data.ideaCount !== null) {
         setIdeaCount(response.data.ideaCount);
       }
@@ -121,7 +122,7 @@ const Home = (props) => {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="/home">
+            <Navbar.Brand href="home">
               <h2 style={{ color: "#0173ce" }}>
                 &nbsp;&nbsp;&nbsp; Ideas Overview
               </h2>
@@ -150,7 +151,11 @@ const Home = (props) => {
               <Box sx={style}>
                 <h3>Idea Information</h3>
                 <br />
-                <OpenIdeaForm infoIdea={ideasInformation} ideaIndex={index} />
+                <OpenIdeaForm
+                  infoIdea={ideasInformation}
+                  ideaIndex={index}
+                  ideaVotes={votes}
+                />
               </Box>
             </Modal>
           </Navbar>
@@ -159,15 +164,15 @@ const Home = (props) => {
           <Item>
             <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status</h4>
             <br />
-            <Grid container spacing={2}>
+            <Grid container spacing={4}>
               <Grid item xs={5}>
                 <ResponsiveContainer width="100%" height="99%" aspect={2}>
                   <PieChart>
                     <Pie
                       data={ideaStatus}
                       dataKey="count"
-                      outerRadius={100}
-                      innerRadius={80}
+                      outerRadius={90}
+                      innerRadius={60}
                       startAngle={90}
                       endAngle={-270}
                       isAnimationActive={true}
@@ -177,13 +182,23 @@ const Home = (props) => {
                       {ideaStatus.map((entry, index) => (
                         <Cell key={`cell-${entry}`} fill={COLORS[index]} />
                       ))}
+                      <Label
+                        value={totalCount}
+                        position="center"
+                        fill="grey"
+                        style={{
+                          fontSize: "32px",
+                          fontWeight: "bold",
+                          fontFamily: "Roboto",
+                        }}
+                      />
                     </Pie>
                     <Tooltip />
                   </PieChart>
                 </ResponsiveContainer>
               </Grid>
               <Grid item xs={7}>
-                <Card sx={{ height: 160, width: 600 }}>
+                <Card sx={{ height: "70%", width: "80%" }}>
                   <CardContent>
                     <Grid container spacing={2}>
                       <Grid item xs={6}>
@@ -292,7 +307,7 @@ const Home = (props) => {
             </Grid>
             <hr />
             <p>
-              <strong>New Ideas</strong>
+              <strong>&nbsp;&nbsp;New Ideas</strong>
             </p>
             {ideas.map((item, i) => (
               <li
@@ -308,11 +323,11 @@ const Home = (props) => {
             ))}
             <hr />
             <p>
-              <strong>Popular Ideas</strong>
+              <strong>&nbsp;&nbsp;Popular Ideas</strong>
             </p>
             <hr />
             <p>
-              <strong>Top Contributors</strong>
+              <strong>&nbsp;&nbsp;Top Contributors</strong>
             </p>
           </Item>
         </Grid>

@@ -14,12 +14,12 @@ import SignInSide from "./components/SignInSide";
 import Welcome from "./components/Welcome";
 import SignUpSide from "./components/SignUpSide";
 const sections = [
-  { title: 'Ideas', url: '/home' },
-  { title: 'Guide', url: '#' },
-  { title: 'Coming Soon', url: '#' },
-  { title: 'Users', url: '#' },
-  { title: 'Research', url: '#' },
-  { title: 'Profile', url: '/profile' },
+  { title: "Ideas", url: "home" },
+  { title: "Guide", url: "#" },
+  { title: "Coming Soon", url: "#" },
+  { title: "Users", url: "#" },
+  { title: "Research", url: "#" },
+  { title: "Profile", url: "/profile" },
 ];
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="home" element={<Home />} />
         </Routes>
         <Routes>
           <Route path="signin1" element={<SignIn />} />

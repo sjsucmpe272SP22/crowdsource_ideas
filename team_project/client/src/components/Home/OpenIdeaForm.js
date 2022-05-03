@@ -13,29 +13,33 @@ import { Experimental_CssVarsProvider } from "@mui/material";
 
 const OpenIdeaForm = (props) => {
   const navigate = useNavigate();
-  const [vote, setVote] = useState(0);
+  const [vote, setVote] = useState(props.ideaVotes);
   const [formValue, setFormValue] = useState({
     comments: "",
     todo: "",
     status: "",
-    vote: vote,
+    votes: vote,
   });
   // const [vote, setVote] = useState(0);
   const handleVote = (event) => {
     event.preventDefault();
     setVote(vote + 1);
+    setFormValue({ ...formValue, votes: vote });
     console.log("Props received1", props.infoIdea);
     console.log("Props received2", props.ideaIndex);
   };
   const handleSubmit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     console.log(formValue);
-    axios.post(API + "/dashboard/createIdeaInformation", { idea: formValue });
-    window.location.reload(false);
+    axios.post(API + "/dashboard/createIdeaInformation", {
+      idea: formValue,
+      index: props.ideaIndex,
+    });
   };
 
   const handleChange = (event) => {
     setFormValue({ ...formValue, [event.target.name]: event.target.value });
+    console.log(formValue);
     //setFormValue({ ...formValue, formValue.vote: vote });
   };
 

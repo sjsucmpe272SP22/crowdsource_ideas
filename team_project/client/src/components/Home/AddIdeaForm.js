@@ -27,6 +27,7 @@ const AddIdeaForm = () => {
     category: "",
     date: currentDate,
     status: "AlreadyExists",
+    votes: 0,
   });
 
   const handleSubmit = (event) => {
