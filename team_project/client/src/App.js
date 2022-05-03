@@ -13,6 +13,7 @@ import Edit from "./components/Profile/Edit";
 import SignInSide from "./components/SignInSide";
 import Welcome from "./components/Welcome";
 import SignUpSide from "./components/SignUpSide";
+import Research from "./components/Research/Research"
 
 // const sections = [
 //   { title: "Ideas", url: "home" },
@@ -50,6 +51,9 @@ function App() {
         </Routes>
         <Routes>
           <Route path="welcome" element={<Welcome />} />
+        </Routes>
+        <Routes>
+          <Route path="research" element={<Research />} />
         </Routes>
       </Router>
     </div>

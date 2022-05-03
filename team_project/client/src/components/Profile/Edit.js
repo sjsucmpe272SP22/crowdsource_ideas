@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import AppBarmenu from './../AppBarmenu';
 
 // dummy account; no db of accounts
 import profile from "./../SignIn/login_credentials.json";
@@ -68,6 +69,7 @@ function Edit() {
 
   return (
     <ThemeProvider theme={theme}>
+      <AppBarmenu />
       <Container maxWidth="xs" sx={{ p: 2 }}>
         <Stack direction="row" justifyContent="center">
           <Card sx={{ maxWidth: 1000, p: 2 }} variant="outlined">

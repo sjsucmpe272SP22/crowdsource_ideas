@@ -98,6 +98,10 @@ export default function PrimarySearchAppBar() {
       nav: "/profile",
     },
     {
+      label: "Research",
+      nav: "/research",
+    },
+    {
       label: "About Us",
       nav: "/welcome",
     },
