@@ -11,7 +11,7 @@ import { useState } from "react";
 import axios from "axios";
 import API from "../../backend";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
+// import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import AppBarmenu from "./../AppBarmenu";
@@ -21,14 +21,14 @@ import {
   Cell,
   XAxis,
   YAxis,
-  CartesianGrid,
+  // CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
   PieChart,
   Pie,
-  Sector,
-  PieLabel,
+  // Sector,
+  // PieLabel,
   Label,
 } from "recharts";
 
@@ -54,9 +54,9 @@ const COLORS = [
 ];
 
 const Home = (props) => {
-  const renderCustomLabel = (entry) => {
-    return `${entry.status} ${entry.count}`;
-  };
+  // const renderCustomLabel = (entry) => {
+  //   return `${entry.status} ${entry.count}`;
+  // };
   const [totalCount, setCount] = useState(0);
   const [ideas, setIdeas] = useState([]);
   const [hours, setHours] = useState(0);
@@ -112,9 +112,9 @@ const Home = (props) => {
     console.log(ideaStatus);
   }, []);
 
-  let renderLabel = function (entry) {
-    return entry.name;
-  };
+  // let renderLabel = function (entry) {
+  //   return entry.name;
+  // };
 
   return (
     <>

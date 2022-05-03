@@ -8,11 +8,11 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import API from "../../backend";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { Experimental_CssVarsProvider } from "@mui/material";
+// import { useNavigate } from "react-router-dom";
+// import { Experimental_CssVarsProvider } from "@mui/material";
 
 const OpenIdeaForm = (props) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [vote, setVote] = useState(props.ideaVotes);
   const [formValue, setFormValue] = useState({
     comments: "",
