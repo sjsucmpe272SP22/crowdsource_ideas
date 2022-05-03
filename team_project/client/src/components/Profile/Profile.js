@@ -32,9 +32,9 @@ function Profile() {
         <Grid container spacing={2}>
           <Grid item s={12} sm={4}>
             <Stack direction="row" justifyContent="center">
-              <Card sx={{ p: 2 }} variant="outlined">
+              <Card sx={{ p: 1, m: 1 }} variant="outlined">
                 <CardContent>
-                  <Typography component="h1" variant="h5" sx={{ mb: 2,}}>
+                  <Typography component="h1" variant="h5" sx={{ mb: 2}}>
                     Profile
                   </Typography>
                   <Stack direction="row" justifyContent="center">
@@ -124,8 +124,8 @@ function Profile() {
             </Stack>
           </Grid>
           <Grid item s={12} sm={8}>
-            <Stack direction="row" justifyContent="center" >
-              <Card sx={{ p: 2, width: 1 }} variant="outlined">
+            <Stack direction="column" justifyContent="center" >
+              <Card sx={{ p: 1, width: 1, m: 1 }} variant="outlined">
                 <CardContent>
                   <TextField 
                     fullWidth 
@@ -136,6 +136,23 @@ function Profile() {
                     label="About Me" 
                     variant="filled"
                     defaultValue={profile.about}
+                    InputProps={{
+                      readOnly: true,
+                    }}
+                    />
+                </CardContent>
+              </Card>
+              <Card sx={{ p: 1, width: 1, m: 1 }} variant="outlined">
+                <CardContent>
+                  <TextField 
+                    fullWidth 
+                    multiline
+                    rows={2}
+                    id="interests"
+                    name="interests"
+                    label="Interests" 
+                    variant="filled"
+                    defaultValue={profile.interests}
                     InputProps={{
                       readOnly: true,
                     }}
