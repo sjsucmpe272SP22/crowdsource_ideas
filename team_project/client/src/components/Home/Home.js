@@ -183,11 +183,11 @@ const Home = (props) => {
                         <Cell key={`cell-${entry}`} fill={COLORS[index]} />
                       ))}
                       <Label
-                        value={totalCount}
+                        value={`${totalCount} Ideas`}
                         position="center"
                         fill="grey"
                         style={{
-                          fontSize: "32px",
+                          fontSize: "28px",
                           fontWeight: "bold",
                           fontFamily: "Roboto",
                         }}
@@ -261,7 +261,7 @@ const Home = (props) => {
             <hr />
             <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ideas</h4>
             <br />
-            <ResponsiveContainer height="100%" width="70%" aspect={2.4}>
+            <ResponsiveContainer height="100%" width="88%" aspect={2.4}>
               <BarChart
                 width={500}
                 height={300}
@@ -276,7 +276,7 @@ const Home = (props) => {
                 <XAxis dataKey="date" />
                 <YAxis />
                 <Tooltip />
-                <Legend />
+                <Legend layout="vertical" verticalAlign="top" align="right" />
                 <Bar dataKey="count" fill="#8884d8" />
               </BarChart>
             </ResponsiveContainer>
