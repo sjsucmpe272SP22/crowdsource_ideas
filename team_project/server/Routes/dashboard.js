@@ -119,9 +119,29 @@ while (dt <= end) {
 router.post("/createIdea", (req, res) => {
   console.log("Inside Create Idea POST");
   console.log("Request Body: " + JSON.stringify(req.body));
+  let min = 0;
+  let max = 100;
   if (req.body.idea) {
-    var temp = req.body.idea;
-    temp.hours = ideas.push(temp); //python output;
+    if(req.body.idea.category == 'Category 1'){
+      min = 12;
+      max = 19;
+    } else if( req.body.idea.category == 'Category 2'){
+      min = 25;
+      max = 35;
+    } else {
+      min = 41;
+      max = 49;
+    }
+    let difference = max - min;
+    let rand = Math.random();
+
+      // multiply with difference 
+    rand = Math.floor( rand * difference);
+
+      // add with min value 
+    rand = rand + min;
+    req.body.idea.hours = Math.floor(rand);
+    ideas.push(req.body.idea);
     console.log("Idea Created Successfully! : " + ideas);
     var flag = false;
     ideaCount.map((idea) => {

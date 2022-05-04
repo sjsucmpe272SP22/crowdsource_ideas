@@ -312,7 +312,7 @@ const Home = (props) => {
               >
                 PROD-I-{i} <a>{item.name}</a>{" "}
                 {hours !== 0 && (
-                  <span style={{ color: "blue" }}> {hours} Hours </span>
+                  <span style={{ color: "blue" }}> {item.hours} Hours </span>
                 )}
                 <label className={"right"}>{item.date}</label>
               </li>
