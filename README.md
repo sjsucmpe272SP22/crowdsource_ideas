@@ -16,6 +16,10 @@ https://ranjanr.blogspot.com/
 
 ## Abstract:
 
+Oftentimes, companies may face the problem of having different opinions and priorities coming from either stakeholders, or managers, or employees. And they lack some sort of platform where they can all express their individual ideas and opinions on the many projects that the company is working on. 
+
+Therefore, we have developed an interactive, online community for companies to crowdsource ideas. Our application gives users an opportunity to pitch ideas, vote on other ideas, and provide commentary on how to improve the company’s products.
+
 ## Approach:
 
 For this project, we will be developing a web application to host an interactive, online community for crowdsourcing ideas. 
