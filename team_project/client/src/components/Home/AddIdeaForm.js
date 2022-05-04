@@ -8,7 +8,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import API from "../../backend";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const AddIdeaForm = () => {
   let newDate = new Date();
@@ -19,7 +19,7 @@ const AddIdeaForm = () => {
     month < 10 ? `0${month}` : `${month}`
   }${"-"}${date}`;
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [formValue, setFormValue] = useState({
     workspace: "",
     name: "",
@@ -27,6 +27,7 @@ const AddIdeaForm = () => {
     category: "",
     date: currentDate,
     status: "AlreadyExists",
+    votes: 0,
   });
 
   const handleSubmit = (event) => {

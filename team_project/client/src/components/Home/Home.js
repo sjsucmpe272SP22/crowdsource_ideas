@@ -11,7 +11,7 @@ import { useState } from "react";
 import axios from "axios";
 import API from "../../backend";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
+// import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import AppBarmenu from "./../AppBarmenu";
@@ -21,14 +21,14 @@ import {
   Cell,
   XAxis,
   YAxis,
-  CartesianGrid,
+  // CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
   PieChart,
   Pie,
-  Sector,
-  PieLabel,
+  // Sector,
+  // PieLabel,
   Label,
 } from "recharts";
 
@@ -54,9 +54,10 @@ const COLORS = [
 ];
 
 const Home = (props) => {
-  const renderCustomLabel = (entry) => {
-    return `${entry.status} ${entry.count}`;
-  };
+  // const renderCustomLabel = (entry) => {
+  //   return `${entry.status} ${entry.count}`;
+  // };
+  const [totalCount, setCount] = useState(0);
   const [ideas, setIdeas] = useState([]);
   const [hours, setHours] = useState(0);
   const [ideasInformation, setIdeasInformation] = useState([]);
@@ -65,15 +66,14 @@ const Home = (props) => {
   const [open, setOpen] = useState(false);
   const [openIdea, setOpenIdea] = useState(false);
   const [index, setIndex] = useState(-1);
+  const [votes, setVotes] = useState(0);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleClickIdea = () => {
-    console.log("idea clicked");
-  };
   const handleOpenIdea = (id) => {
     setOpenIdea(true);
     console.log("success", id);
     setIndex(id);
+    setVotes(ideas[id].votes);
   };
   const handleCloseIdea = () => setOpenIdea(false);
   const style = {
@@ -92,6 +92,7 @@ const Home = (props) => {
     axios.get(API + "/dashboard/getIdeas").then((response) => {
       setIdeas(response.data.ideas);
       setIdeaStatus(response.data.ideaStatus);
+      setCount(response.data.totalCount);
       if (response.data.ideaCount !== null) {
         setIdeaCount(response.data.ideaCount);
       }
@@ -111,9 +112,9 @@ const Home = (props) => {
     console.log(ideaStatus);
   }, []);
 
-  let renderLabel = function (entry) {
-    return entry.name;
-  };
+  // let renderLabel = function (entry) {
+  //   return entry.name;
+  // };
 
   return (
     <>
@@ -121,7 +122,7 @@ const Home = (props) => {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="/home">
+            <Navbar.Brand href="home">
               <h2 style={{ color: "#0173ce" }}>
                 &nbsp;&nbsp;&nbsp; Ideas Overview
               </h2>
@@ -150,7 +151,11 @@ const Home = (props) => {
               <Box sx={style}>
                 <h3>Idea Information</h3>
                 <br />
-                <OpenIdeaForm infoIdea={ideasInformation} ideaIndex={index} />
+                <OpenIdeaForm
+                  infoIdea={ideasInformation}
+                  ideaIndex={index}
+                  ideaVotes={votes}
+                />
               </Box>
             </Modal>
           </Navbar>
@@ -159,15 +164,15 @@ const Home = (props) => {
           <Item>
             <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status</h4>
             <br />
-            <Grid container spacing={2}>
+            <Grid container spacing={4}>
               <Grid item xs={5}>
                 <ResponsiveContainer width="100%" height="99%" aspect={2}>
                   <PieChart>
                     <Pie
                       data={ideaStatus}
                       dataKey="count"
-                      outerRadius={100}
-                      innerRadius={80}
+                      outerRadius={90}
+                      innerRadius={60}
                       startAngle={90}
                       endAngle={-270}
                       isAnimationActive={true}
@@ -177,13 +182,23 @@ const Home = (props) => {
                       {ideaStatus.map((entry, index) => (
                         <Cell key={`cell-${entry}`} fill={COLORS[index]} />
                       ))}
+                      <Label
+                        value={`${totalCount} Ideas`}
+                        position="center"
+                        fill="grey"
+                        style={{
+                          fontSize: "28px",
+                          fontWeight: "bold",
+                          fontFamily: "Roboto",
+                        }}
+                      />
                     </Pie>
                     <Tooltip />
                   </PieChart>
                 </ResponsiveContainer>
               </Grid>
               <Grid item xs={7}>
-                <Card sx={{ height: 160, width: 600 }}>
+                <Card sx={{ height: "70%", width: "80%" }}>
                   <CardContent>
                     <Grid container spacing={2}>
                       <Grid item xs={6}>
@@ -246,7 +261,7 @@ const Home = (props) => {
             <hr />
             <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ideas</h4>
             <br />
-            <ResponsiveContainer height="100%" width="70%" aspect={2.4}>
+            <ResponsiveContainer height="100%" width="88%" aspect={2.4}>
               <BarChart
                 width={500}
                 height={300}
@@ -261,7 +276,7 @@ const Home = (props) => {
                 <XAxis dataKey="date" />
                 <YAxis />
                 <Tooltip />
-                <Legend />
+                <Legend layout="vertical" verticalAlign="top" align="right" />
                 <Bar dataKey="count" fill="#8884d8" />
               </BarChart>
             </ResponsiveContainer>
@@ -292,7 +307,7 @@ const Home = (props) => {
             </Grid>
             <hr />
             <p>
-              <strong>New Ideas</strong>
+              <strong>&nbsp;&nbsp;New Ideas</strong>
             </p>
             {ideas.map((item, i) => (
               <li
@@ -308,11 +323,11 @@ const Home = (props) => {
             ))}
             <hr />
             <p>
-              <strong>Popular Ideas</strong>
+              <strong>&nbsp;&nbsp;Popular Ideas</strong>
             </p>
             <hr />
             <p>
-              <strong>Top Contributors</strong>
+              <strong>&nbsp;&nbsp;Top Contributors</strong>
             </p>
           </Item>
         </Grid>

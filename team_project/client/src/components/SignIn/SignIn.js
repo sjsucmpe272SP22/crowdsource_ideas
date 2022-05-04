@@ -50,27 +50,24 @@ export default function SignIn() {
 
     let enteredEmail = data.get("email");
     let enteredPassword = data.get("password");
-    if(enteredEmail === ""){
+    if (enteredEmail === "") {
       setInvalidEmail("Enter email");
     } else {
-      if(!format.test(enteredEmail)){
-        setInvalidEmail("Invalid email")
-      }
-      else if(enteredEmail !== login.email){
+      if (!format.test(enteredEmail)) {
+        setInvalidEmail("Invalid email");
+      } else if (enteredEmail !== login.email) {
         setInvalidEmail("Please sign up!");
       } else {
         setInvalidEmail("");
-        if(enteredPassword === ""){
+        if (enteredPassword === "") {
           setInvalidPassword("Enter password!");
-        } 
-        else if(enteredPassword !== login.password){
-          setInvalidPassword("Wrong password!")
-        } else{
+        } else if (enteredPassword !== login.password) {
+          setInvalidPassword("Wrong password!");
+        } else {
           setInvalidPassword("");
           setInvalidEmail("");
-          navigate("/home");
+          navigate("home");
         }
-        
       }
     }
   };
@@ -108,7 +105,13 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
-            /> { invalidEmail !== "" && <span style={{ color: 'red', marginRight : '282px' }}> { invalidEmail }</span> }
+            />{" "}
+            {invalidEmail !== "" && (
+              <span style={{ color: "red", marginRight: "282px" }}>
+                {" "}
+                {invalidEmail}
+              </span>
+            )}
             <TextField
               margin="normal"
               required
@@ -118,7 +121,13 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-            /> { invalidPassword !=="" && <span style={{ color: 'red', marginRight : '260px' }}> { invalidPassword } </span> }
+            />{" "}
+            {invalidPassword !== "" && (
+              <span style={{ color: "red", marginRight: "260px" }}>
+                {" "}
+                {invalidPassword}{" "}
+              </span>
+            )}
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
