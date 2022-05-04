@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import ButtonBase from "@mui/material/ButtonBase";
 import Typography from "@mui/material/Typography";
+import OutlinedCard from "./OutlinedCard";
 
 const Image = styled("span")(({ theme }) => ({
   position: "absolute",
@@ -94,8 +95,34 @@ function Welcome() {
             </Typography>
           </Image>
         </ImageButton>
-        )
       </Box>
+      <span
+        style={{
+          color: "white",
+          fontSize: "xxx-large",
+          paddingRight: "800px",
+          fontFamily: "fantasy",
+          position: "relative",
+          top: "120px",
+        }}
+      >
+        {" "}
+        An interactive, online community{" "}
+      </span>{" "}
+      <br />
+      <span
+        style={{
+          color: "white",
+          fontSize: "xxx-large",
+          paddingRight: "800px",
+          fontFamily: "fantasy",
+          position: "relative",
+          top: "120px",
+        }}
+      >
+        {" "}
+        for crowdsourcing ideas{" "}
+      </span>
     </div>
   );
 }

@@ -198,10 +198,49 @@ router.get("/getIdeasInformation", (req, res) => {
 
 router.get("/getHoursForIdea", (req, res) => {
   console.log("Inside Get Hours Information GET");
-  return res.status(200).send({
-    success: true,
-    message: "Hours returned Successfully!",
-    hours: hours,
-  });
+  // return res.status(200).send({
+  //   success: true,
+  //   message: "Hours returned Successfully!",
+  //   hours: hours,
+  // });
+
+
+  const { spawn } = require('child_process');
+  // const child = spawn('dir', [], {shell: true});
+
+    // const pyProg = spawn('python', ['./test.py'], {shell: true});
+
+    // pyProg.stdout.on('data', function(data) {
+
+    //     console.log("date has been returned", data.toString());
+    //     res.write(data);
+    //     res.end('end');
+    // });
+
+    // pyProg.stdout.on('error', function( err ){ 
+    //   print(err)
+    //   throw err })
+
+    var dataToSend;
+    // spawn new child process to call the python script
+    const python = spawn('python', [__dirname +'/test.py'], {shell: true});
+    // collect data from script
+      python.stdout.on('data', function (data) {
+      console.log('Pipe data from python script ...');
+      dataToSend = data.toString();
+    });
+    // in close event we are sure that stream from child process is closed
+    python.on('close', (code) => {
+    console.log(`child process close all stdio with code ${code}`);
+    console.log(dataToSend);
+    // send data to browser
+    res.send(dataToSend)
+    });
+
 });
 module.exports = router;
+/*
+12-19 tech
+25-35 business
+41-49 innovation
+*/
