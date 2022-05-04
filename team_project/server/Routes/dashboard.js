@@ -11,7 +11,7 @@ var ideas = [
     date: "2022-04-20",
     status: "AlreadyExists",
     votes: 12,
-    hours: 10,
+    hours: 12,
   },
   {
     workspace: "CMPE 272",
@@ -22,7 +22,7 @@ var ideas = [
     date: "2022-04-19",
     status: "AlreadyExists",
     votes: 15,
-    hours: 12,
+    hours: 17,
   },
   {
     workspace: "CMPE 272",
@@ -54,7 +54,7 @@ var ideas = [
     date: "2022-04-18",
     status: "AlreadyExists",
     votes: 32,
-    hours: 28,
+    hours: 29,
   },
   {
     workspace: "CMPE 272",
@@ -65,7 +65,7 @@ var ideas = [
     date: "2022-04-18",
     status: "AlreadyExists",
     votes: 60,
-    hours: 65,
+    hours: 48,
   },
   {
     workspace: "CMPE 272",
@@ -122,10 +122,10 @@ router.post("/createIdea", (req, res) => {
   let min = 0;
   let max = 100;
   if (req.body.idea) {
-    if(req.body.idea.category == 'Category 1'){
+    if (req.body.idea.category == "Category 1") {
       min = 12;
       max = 19;
-    } else if( req.body.idea.category == 'Category 2'){
+    } else if (req.body.idea.category == "Category 2") {
       min = 25;
       max = 35;
     } else {
@@ -135,10 +135,10 @@ router.post("/createIdea", (req, res) => {
     let difference = max - min;
     let rand = Math.random();
 
-      // multiply with difference 
-    rand = Math.floor( rand * difference);
+    // multiply with difference
+    rand = Math.floor(rand * difference);
 
-      // add with min value 
+    // add with min value
     rand = rand + min;
     req.body.idea.hours = Math.floor(rand);
     ideas.push(req.body.idea);
@@ -224,39 +224,37 @@ router.get("/getHoursForIdea", (req, res) => {
   //   hours: hours,
   // });
 
-
-  const { spawn } = require('child_process');
+  const { spawn } = require("child_process");
   // const child = spawn('dir', [], {shell: true});
 
-    // const pyProg = spawn('python', ['./test.py'], {shell: true});
+  // const pyProg = spawn('python', ['./test.py'], {shell: true});
 
-    // pyProg.stdout.on('data', function(data) {
+  // pyProg.stdout.on('data', function(data) {
 
-    //     console.log("date has been returned", data.toString());
-    //     res.write(data);
-    //     res.end('end');
-    // });
+  //     console.log("date has been returned", data.toString());
+  //     res.write(data);
+  //     res.end('end');
+  // });
 
-    // pyProg.stdout.on('error', function( err ){ 
-    //   print(err)
-    //   throw err })
+  // pyProg.stdout.on('error', function( err ){
+  //   print(err)
+  //   throw err })
 
-    var dataToSend;
-    // spawn new child process to call the python script
-    const python = spawn('python', [__dirname +'/test.py'], {shell: true});
-    // collect data from script
-      python.stdout.on('data', function (data) {
-      console.log('Pipe data from python script ...');
-      dataToSend = data.toString();
-    });
-    // in close event we are sure that stream from child process is closed
-    python.on('close', (code) => {
+  var dataToSend;
+  // spawn new child process to call the python script
+  const python = spawn("python", [__dirname + "/test.py"], { shell: true });
+  // collect data from script
+  python.stdout.on("data", function (data) {
+    console.log("Pipe data from python script ...");
+    dataToSend = data.toString();
+  });
+  // in close event we are sure that stream from child process is closed
+  python.on("close", (code) => {
     console.log(`child process close all stdio with code ${code}`);
     console.log(dataToSend);
     // send data to browser
-    res.send(dataToSend)
-    });
-
+    res.send(dataToSend);
+  });
 });
 module.exports = router;
 /*
