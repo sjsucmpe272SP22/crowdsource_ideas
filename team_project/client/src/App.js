@@ -13,15 +13,17 @@ import Edit from "./components/Profile/Edit";
 import SignInSide from "./components/SignInSide";
 import Welcome from "./components/Welcome";
 import SignUpSide from "./components/SignUpSide";
+import Reports from "./components/Reports/Reports";
+import IdeaStats from "./components/Reports/IdeaStats";
 
-// const sections = [
-//   { title: "Ideas", url: "home" },
-//   { title: "Guide", url: "#" },
-//   { title: "Coming Soon", url: "#" },
-//   { title: "Users", url: "#" },
-//   { title: "Research", url: "#" },
-//   { title: "Profile", url: "/profile" },
-// ];
+const sections = [
+  { title: "Ideas", url: "home" },
+  { title: "Guide", url: "#" },
+  { title: "Coming Soon", url: "#" },
+  { title: "Users", url: "#" },
+  { title: "Reports", url: "reports" },
+  { title: "Profile", url: "profile" },
+];
 
 function App() {
   return (
@@ -50,6 +52,12 @@ function App() {
         </Routes>
         <Routes>
           <Route path="welcome" element={<Welcome />} />
+        </Routes>
+        <Routes>
+          <Route path="reports" element={<Reports />} />
+        </Routes>
+        <Routes>
+          <Route path="ideaStats" element={<IdeaStats />} />
         </Routes>
       </Router>
     </div>
