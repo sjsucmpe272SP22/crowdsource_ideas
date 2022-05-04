@@ -1,7 +1,84 @@
 const express = require("express");
 const router = express.Router();
 
-var ideas = [];
+var ideas = [
+  {
+    workspace: "CMPE 272",
+    name: "Idea1",
+    description:
+      "We, for example, have a column in Asana 'In development' with each sprint as a milestone. The milestones is the release.",
+    category: "Tech",
+    date: "2022-04-20",
+    status: "AlreadyExists",
+    votes: 12,
+    hours: 10,
+  },
+  {
+    workspace: "CMPE 272",
+    name: "Idea2",
+    description:
+      "I need a filter that show me if an existing JIRA link exists, so that I can bulk delete orphaned requirements.",
+    category: "Tech",
+    date: "2022-04-19",
+    status: "AlreadyExists",
+    votes: 15,
+    hours: 12,
+  },
+  {
+    workspace: "CMPE 272",
+    name: "Idea3",
+    description:
+      "Please add the capability to define a password per shared webpage! This would be most useful to us if we could set a password for each shared webpage",
+    category: "Tech",
+    date: "2022-04-19",
+    status: "AlreadyExists",
+    votes: 25,
+    hours: 18,
+  },
+  {
+    workspace: "CMPE 272",
+    name: "Idea4",
+    description:
+      "Measure all your marketing activities and improve all your efforts based on performance results.",
+    category: "Business",
+    date: "2022-04-18",
+    status: "AlreadyExists",
+    votes: 23,
+    hours: 32,
+  },
+  {
+    workspace: "CMPE 272",
+    name: "Idea5",
+    description: "Use business ideas book to better manage all your ideas.",
+    category: "Business",
+    date: "2022-04-18",
+    status: "AlreadyExists",
+    votes: 32,
+    hours: 28,
+  },
+  {
+    workspace: "CMPE 272",
+    name: "Idea6",
+    description:
+      "I want an application so that diners could easily share their thoughts on dishes and find something great everytime they eat out.",
+    category: "Innovation",
+    date: "2022-04-18",
+    status: "AlreadyExists",
+    votes: 60,
+    hours: 65,
+  },
+  {
+    workspace: "CMPE 272",
+    name: "Idea7",
+    description:
+      "There is a huge need for a company that offered legal assistance for traffic tickets for a low price and money back guarantee",
+    category: "Innovation",
+    date: "2022-04-18",
+    status: "AlreadyExists",
+    votes: 45,
+    hours: 40,
+  },
+];
 var ideasInformation = [];
 var hours = 10;
 // logic for creating pie chart on dashboard
@@ -43,7 +120,8 @@ router.post("/createIdea", (req, res) => {
   console.log("Inside Create Idea POST");
   console.log("Request Body: " + JSON.stringify(req.body));
   if (req.body.idea) {
-    ideas.push(req.body.idea);
+    var temp = req.body.idea;
+    temp.hours = ideas.push(temp); //python output;
     console.log("Idea Created Successfully! : " + ideas);
     var flag = false;
     ideaCount.map((idea) => {

@@ -11,30 +11,24 @@ import { useState } from "react";
 import axios from "axios";
 import API from "../../backend";
 import Card from "@mui/material/Card";
-// import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import AppBarmenu from "./../AppBarmenu";
+import Grid from "@mui/material/Grid";
+import "./Home.css";
 import {
   BarChart,
   Bar,
   Cell,
   XAxis,
   YAxis,
-  // CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
   PieChart,
   Pie,
-  // Sector,
-  // PieLabel,
   Label,
 } from "recharts";
-
-import "./Home.css";
-
-import Grid from "@mui/material/Grid";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -112,10 +106,6 @@ const Home = (props) => {
     console.log(ideaStatus);
   }, []);
 
-  // let renderLabel = function (entry) {
-  //   return entry.name;
-  // };
-
   return (
     <>
       <AppBarmenu />
@@ -123,7 +113,13 @@ const Home = (props) => {
         <Grid item xs={12}>
           <Navbar bg="light" expand="lg">
             <Navbar.Brand href="home">
-              <h2 style={{ color: "#0173ce" }}>
+              <h2
+                style={{
+                  "font-weight": "bold",
+                  "font-family": "Roboto",
+                  color: "#0173ce",
+                }}
+              >
                 &nbsp;&nbsp;&nbsp; Ideas Overview
               </h2>
             </Navbar.Brand>
