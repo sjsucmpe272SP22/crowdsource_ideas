@@ -16,6 +16,10 @@ https://ranjanr.blogspot.com/
 
 ## Abstract:
 
+Oftentimes, companies may face the problem of having different opinions and priorities coming from either stakeholders, or managers, or employees. And they lack some sort of platform where they can all express their individual ideas and opinions on the many projects that the company is working on. 
+
+Therefore, we have developed an interactive, online community for companies to crowdsource ideas. Our application gives users an opportunity to pitch ideas, vote on other ideas, and provide commentary on how to improve the company’s products.
+
 ## Approach:
 
 For this project, we will be developing a web application to host an interactive, online community for crowdsourcing ideas. 
@@ -26,6 +30,16 @@ The web application will be built on a full MERN stack.
 - Users will interact with a UI built with a React/Node front end.
 
 ## Personas:
+
+This application caters to several types of users.
+
+There are regular employees who are actually working on the projects. They might have a better understanding of which ideas are feasible and can be implemented.
+
+There are managers who oversee the company projects. They can provide input as well as monitor the metrics and statistics of project ideas and progress.
+
+There are board members who are interested in seeing which ideas can bring the most business value to the company and their products. 
+
+And then there are stakeholders who may wish to push for specific project features and ideas and see that their voices are heard. 
 
 ## Resources:
 

@@ -100,7 +100,7 @@ var ideaCount = [
 ];
 var totalCount = 7;
 var end = new Date();
-var start = new Date("2022-04-22T04:15:02.993Z");
+var start = new Date("2022-04-21T04:15:02.993Z");
 var dt = new Date(start);
 
 while (dt <= end) {
