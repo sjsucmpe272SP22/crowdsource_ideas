@@ -123,7 +123,7 @@ export default function SignUpSide() {
                             {/* <LockOutlinedIcon /> */}
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Sign in
+                            Sign Up
                         </Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                         <TextField
