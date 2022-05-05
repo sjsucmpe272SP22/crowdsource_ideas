@@ -113,7 +113,7 @@ const Home = (props) => {
         <Grid item xs={12}>
           <Navbar bg="light" expand="lg">
             <Navbar.Brand href="home">
-              <h2
+              <h3
                 style={{
                   "font-weight": "bold",
                   "font-family": "Roboto",
@@ -121,7 +121,7 @@ const Home = (props) => {
                 }}
               >
                 &nbsp;&nbsp;&nbsp; Ideas Overview
-              </h2>
+              </h3>
             </Navbar.Brand>
             <Button variant="contained" onClick={handleOpen}>
               Add Idea
@@ -257,7 +257,7 @@ const Home = (props) => {
             <hr />
             <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ideas</h4>
             <br />
-            <ResponsiveContainer height="100%" width="88%" aspect={2.4}>
+            <ResponsiveContainer height="99%" width="99%" aspect={2.4}>
               <BarChart
                 width={500}
                 height={300}

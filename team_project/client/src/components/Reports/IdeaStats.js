@@ -142,7 +142,7 @@ const IdeaStats = () => {
         <Grid item xs={12}>
           <Navbar bg="light" expand="lg">
             <Navbar.Brand href="home">
-              <h2
+              <h3
                 style={{
                   "font-weight": "bold",
                   "font-family": "Roboto",
@@ -150,7 +150,7 @@ const IdeaStats = () => {
                 }}
               >
                 &nbsp;&nbsp;&nbsp; {state} Idea Statistics
-              </h2>
+              </h3>
             </Navbar.Brand>
           </Navbar>
         </Grid>
@@ -229,7 +229,7 @@ const IdeaStats = () => {
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <hr />
-          <h2
+          <h3
             style={{
               "font-weight": "bold",
               "font-family": "Roboto",
@@ -237,7 +237,7 @@ const IdeaStats = () => {
             }}
           >
             Idea Logs
-          </h2>
+          </h3>
           <hr />
           {ideas.map((idea, index) => (
             <Item>

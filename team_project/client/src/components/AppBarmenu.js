@@ -267,11 +267,17 @@ export default function PrimarySearchAppBar() {
             {list("left")}
             {/* <h2> Anirudh </h2> */}
           </Drawer>
-          <span style={{
-            color: 'white',
-            fontSize: 'xxx-large',
-            fontFamily: 'monospace'
-          }}> CROWDSOURCE IDEAS </span>
+          <span
+            style={{
+              color: "white",
+              fontSize: "xx-large",
+              fontFamily: "monospace",
+              fontWeight: "bold",
+            }}
+          >
+            {" "}
+            CROWDSOURCE IDEAS{" "}
+          </span>
           {/* <Search>
             <SearchIconWrapper >
               <div onClick={handleSearch}>
