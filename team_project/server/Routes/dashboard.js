@@ -94,9 +94,10 @@ const ideaStatus = [
 
 // logic for creating an array of dates and idea counts for dashboard barchart
 var ideaCount = [
-  { date: "2022-04-18", count: 4 },
+  { date: "2022-04-18", count: 3 },
   { date: "2022-04-19", count: 1 },
-  { date: "2022-04-20", count: 2 },
+  { date: "2022-04-20", count: 1 },
+  { date: "2022-04-21", count: 2 },
 ];
 var totalCount = 7;
 var end = new Date();
