@@ -94,14 +94,13 @@ const ideaStatus = [
 
 // logic for creating an array of dates and idea counts for dashboard barchart
 var ideaCount = [
-  { date: "2022-04-18", count: 3 },
+  { date: "2022-04-18", count: 4 },
   { date: "2022-04-19", count: 1 },
-  { date: "2022-04-20", count: 1 },
-  { date: "2022-04-21", count: 2 },
+  { date: "2022-04-20", count: 2 },
 ];
 var totalCount = 7;
 var end = new Date();
-var start = new Date("2022-04-22T04:15:02.993Z");
+var start = new Date("2022-04-21T04:15:02.993Z");
 var dt = new Date(start);
 
 while (dt <= end) {
