@@ -9,7 +9,7 @@ const cors = require("cors");
 // Once you are done and want to push DON'T FORGET to change it back to frontendURL = "http://35.89.120.177:3000"
 
 // const frontendURL = "http://localhost:3000";
-const frontendURL = "http://35.89.120.177:3000";
+const frontendURL = "http://54.218.147.228:3000";
 
 var session = require("express-session");
 
