@@ -12,6 +12,8 @@ https://ranjanr.blogspot.com/
 Deployed Application: 
 http://54.218.147.228:3000/welcome
 
+Project Report: https://docs.google.com/document/d/14h41Uzr5b4TrhgrO3s3O3C1GFnTULvFhXMstjCnkA8o/edit?usp=sharing
+
 ---
 # Project Idea
 
