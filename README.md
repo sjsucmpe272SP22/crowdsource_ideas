@@ -10,7 +10,7 @@ https://ranjanr.blogspot.com/
 5. Build a tool like AHA Ideas: https://www.aha.io/pricing?product=Ideas
 
 Deployed Application: 
-http://35.89.120.177:3000/welcome
+http://54.218.147.228:3000/welcome
 
 ---
 # Project Idea
